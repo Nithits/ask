@@ -24,25 +24,29 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
     <link rel="stylesheet" href="../assets/css/styleadmin.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-    <script>
-    // สั่งให้พับเมนู Sidebar อัตโนมัติเมื่อมีการคลิกลิงก์ (เพื่อแก้บั๊กเมนูค้างบังจอในมือถือ)
-    document.addEventListener('DOMContentLoaded', function () {
-        const menuLinks = document.querySelectorAll('.sidebar .offcanvas-body a');
-        const sidebarMenu = document.getElementById('sidebarMenu');
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
 
-        menuLinks.forEach(function (link) {
-            link.addEventListener('click', function () {
-                // เช็คว่าถ้าหน้าจอเล็ก (โหมดมือถือ) ให้สั่งปิดเมนูทันทีเมื่อคลิก
-                if (window.innerWidth < 992) {
-                    const bsOffcanvas = bootstrap.Offcanvas.getInstance(sidebarMenu);
-                    if (bsOffcanvas) {
-                        bsOffcanvas.hide();
-                    }
-                }
-            });
-        });
-    });
-    </script>
+    <style>
+        /* จัดการสไตล์เมนูในมือถือ โดยไม่ไปกวนระบบเปิด-ปิดของ Bootstrap */
+        @media (max-width: 991.98px) {
+            .offcanvas-start {
+                width: 280px !important;
+                background-color: #212529 !important;
+            }
+            .sidebar.offcanvas-lg {
+                display: flex !important; /* ป้องกัน styleadmin.css สั่งซ่อน */
+            }
+            .sidebar a {
+                color: #fff !important;
+            }
+            .sidebar a:hover, .sidebar a.active {
+                background-color: rgba(255,255,255,0.1) !important;
+            }
+            .sidebar .menu-label {
+                color: #adb5bd !important;
+            }
+        }
+    </style>
 </head>
 <body>
 

@@ -24,22 +24,25 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
     <link rel="stylesheet" href="../assets/css/styleadmin.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-<style>
-    @media (max-width: 991.98px) {
-        /* ปลดล็อกเผื่อไฟล์ styleadmin.css สั่ง display: none เอาไว้ */
-        .sidebar.offcanvas-start {
-            width: 280px !important;
-            background-color: #212529 !important;
-            display: flex !important; /* บังคับให้ตัวกล่องแสดงผลเสมอ */
-        }
-        .sidebar a {
-            color: #fff !important;
-        }
-        .sidebar .menu-label {
-            color: #adb5bd !important;
-        }
-    }
-</style>
+    <script>
+    // สั่งให้พับเมนู Sidebar อัตโนมัติเมื่อมีการคลิกลิงก์ (เพื่อแก้บั๊กเมนูค้างบังจอในมือถือ)
+    document.addEventListener('DOMContentLoaded', function () {
+        const menuLinks = document.querySelectorAll('.sidebar .offcanvas-body a');
+        const sidebarMenu = document.getElementById('sidebarMenu');
+
+        menuLinks.forEach(function (link) {
+            link.addEventListener('click', function () {
+                // เช็คว่าถ้าหน้าจอเล็ก (โหมดมือถือ) ให้สั่งปิดเมนูทันทีเมื่อคลิก
+                if (window.innerWidth < 992) {
+                    const bsOffcanvas = bootstrap.Offcanvas.getInstance(sidebarMenu);
+                    if (bsOffcanvas) {
+                        bsOffcanvas.hide();
+                    }
+                }
+            });
+        });
+    });
+    </script>
 </head>
 <body>
 

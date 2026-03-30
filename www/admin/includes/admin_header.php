@@ -24,21 +24,22 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
     <link rel="stylesheet" href="../assets/css/styleadmin.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-    <style>
-        /* เพิ่มสไตล์เล็กน้อยเพื่อให้ Sidebar ในมือถือดูสวยงาม และไม่กระทบของเดิม */
-        @media (max-width: 991.98px) {
-            .sidebar {
-                width: 280px !important; /* กำหนดความกว้างเมนูตอนสไลด์ออกมา */
-                background-color: #212529; /* สีพื้นหลังเมนูมือถือ (เปลี่ยนให้ตรงกับ styleadmin.css ได้) */
-            }
-            .sidebar a {
-                color: #fff !important; /* สีตัวอักษรเมนูมือถือ */
-            }
-            .sidebar .menu-label {
-                color: #adb5bd !important;
-            }
+<style>
+    @media (max-width: 991.98px) {
+        /* ปลดล็อกเผื่อไฟล์ styleadmin.css สั่ง display: none เอาไว้ */
+        .sidebar.offcanvas-start {
+            width: 280px !important;
+            background-color: #212529 !important;
+            display: flex !important; /* บังคับให้ตัวกล่องแสดงผลเสมอ */
         }
-    </style>
+        .sidebar a {
+            color: #fff !important;
+        }
+        .sidebar .menu-label {
+            color: #adb5bd !important;
+        }
+    }
+</style>
 </head>
 <body>
 

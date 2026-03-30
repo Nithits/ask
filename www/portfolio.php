@@ -58,17 +58,19 @@ try {
                     $img_src = !empty($item['image']) ? "assets/uploads/portfolio/" . $item['image'] : "https://via.placeholder.com/600x400?text=No+Image";
                 ?>
                     <div class="col-12 col-md-6 col-lg-4 portfolio-item" data-category="<?php echo htmlspecialchars($item['category_key']); ?>">
-                        <a href="<?php echo $img_src; ?>" data-fancybox="gallery" data-caption="<?php echo htmlspecialchars($title); ?>" class="text-decoration-none">
-                            <div class="portfolio-card">
-                                <div class="portfolio-img-box">
-                                    <img src="<?php echo $img_src; ?>" alt="<?php echo htmlspecialchars($title); ?>" loading="lazy">
-                                    <div class="portfolio-overlay">
-                                        <i class="fas fa-search-plus"></i>
-                                        <span><?php echo htmlspecialchars($title); ?></span>
-                                    </div>
+                        <div class="portfolio-card">
+                            
+                            <a href="<?php echo $img_src; ?>" data-fancybox="gallery" data-caption="<?php echo htmlspecialchars($title); ?>" class="portfolio-img-box text-decoration-none d-block position-relative">
+                                
+                                <img src="<?php echo $img_src; ?>" alt="<?php echo htmlspecialchars($title); ?>" loading="lazy" class="img-fluid w-100">
+                                
+                                <div class="portfolio-overlay">
+                                    <i class="fas fa-search-plus"></i>
+                                    <span><?php echo htmlspecialchars($title); ?></span>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+
+                        </div>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
@@ -106,7 +108,12 @@ try {
 document.addEventListener('DOMContentLoaded', function() {
     // 1. เริ่มใช้งาน Fancybox
     Fancybox.bind('[data-fancybox="gallery"]', {
-        Toolbar: { display: ["close"] }
+        // เปิดใช้งานการเลื่อนรูปภาพแบบลูป
+        loop: true,
+        // แสดงปุ่ม Thumbnail ด้านล่าง (ถ้าต้องการปิด ให้ตั้งค่าเป็น false)
+        Thumbs: {
+            autoStart: true,
+        }
     });
 
     // 2. ระบบ Filter (คัดกรองหมวดหมู่)

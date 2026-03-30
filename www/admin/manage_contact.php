@@ -49,9 +49,13 @@ include 'includes/admin_header.php';
                     <?php if (count($messages) > 0): ?>
                         <?php foreach ($messages as $msg): ?>
                         <tr>
+                            <?php 
+                                // สร้างตัวแปรบวกเวลาไทย 7 ชั่วโมง
+                                $thai_time_contact = strtotime($msg['created_at'] . ' +7 hours'); 
+                            ?>
                             <td>
                                 <div class="text-muted small">
-                                    <i class="far fa-clock me-1"></i> <?php echo date('d/m/Y H:i', strtotime($msg['created_at'])); ?>
+                                    <i class="far fa-clock me-1"></i> <?php echo date('d/m/Y H:i', $thai_time_contact); ?>
                                 </div>
                             </td>
                             <td>
@@ -70,7 +74,7 @@ include 'includes/admin_header.php';
                                         data-tel="<?php echo htmlspecialchars($msg['tel'] ?: '-'); ?>"
                                         data-subject="<?php echo htmlspecialchars($msg['subject'] ?: 'สอบถามทั่วไป'); ?>"
                                         data-message="<?php echo htmlspecialchars($msg['message']); ?>"
-                                        data-date="<?php echo date('d/m/Y H:i', strtotime($msg['created_at'])); ?>"
+                                        data-date="<?php echo date('d/m/Y H:i', $thai_time_contact); ?>"
                                         title="เปิดอ่าน">
                                     <i class="fas fa-eye"></i>
                                 </button>

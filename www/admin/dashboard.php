@@ -81,8 +81,12 @@ try {
                         <?php foreach ($quotations as $row): ?>
                             <tr>
                                 <td class="ps-4">
-                                    <div class="fw-semibold text-dark"><?= date('d M Y', strtotime($row['requested_at'])) ?></div>
-                                    <div class="small text-muted"><i class="bi bi-clock me-1"></i> <?= date('H:i', strtotime($row['requested_at'])) ?></div>
+                                    <?php 
+                                        // แปลงเวลาที่ดึงมาจากฐานข้อมูล ให้บวกเพิ่ม 7 ชั่วโมงเป็นเวลาไทย
+                                        $thai_time = strtotime($row['requested_at'] . ' +7 hours'); 
+                                    ?>
+                                    <div class="fw-semibold text-dark"><?= date('d M Y', $thai_time) ?></div>
+                                    <div class="small text-muted"><i class="bi bi-clock me-1"></i> <?= date('H:i', $thai_time) ?></div>
                                 </td>
                                 <td>
                                     <div class="fw-bold text-dark text-truncate" style="max-width: 200px;"><?= htmlspecialchars($row['company_name']) ?></div>

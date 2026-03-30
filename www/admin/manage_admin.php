@@ -97,7 +97,13 @@ include 'includes/admin_header.php';
                                 <?php endif; ?>
                             </div>
                         </td>
-                        <td class="text-muted small"><?php echo date('d/m/Y H:i', strtotime($admin['created_at'])); ?></td>
+                        <td class="text-muted small">
+                            <?php 
+                                // แปลงเวลาที่ดึงมาจากฐานข้อมูล ให้บวกเพิ่ม 7 ชั่วโมงเป็นเวลาไทย
+                                $thai_time_admin = strtotime($admin['created_at'] . ' +7 hours'); 
+                                echo date('d/m/Y H:i', $thai_time_admin); 
+                            ?>
+                        </td>
                         <td class="text-center">
                             <button class="btn-action-edit me-1" onclick='editAdmin(<?php echo json_encode($admin); ?>)' title="แก้ไข"><i class="fas fa-edit"></i></button>
                             <?php if($admin['username'] != $current_admin_username): ?>

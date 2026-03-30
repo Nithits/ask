@@ -45,8 +45,47 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
             .sidebar .menu-label {
                 color: #adb5bd !important;
             }
+            #sidebarMenu a {
+                position: relative;
+                z-index: 1060 !important; 
+                pointer-events: auto !important;
+            }
         }
     </style>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // ดึงข้อมูลปุ่มทุกลิงก์ในเมนูด้านข้างมา
+        const sidebarLinks = document.querySelectorAll('#sidebarMenu a');
+        
+        sidebarLinks.forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                const url = this.getAttribute('href');
+                
+                // ตรวจสอบว่ามีลิงก์จริงๆ และไม่ใช่ลิงก์หลอก (#)
+                if (url && url !== '#' && url !== '') {
+                    e.preventDefault(); 
+                    
+                    // เช็คว่าถ้าเป็นหน้าจอมือถือ (กว้างน้อยกว่า 992px) ให้พับเมนูก่อน
+                    if (window.innerWidth < 992) {
+                        const myOffcanvas = document.getElementById('sidebarMenu');
+                        const bsOffcanvas = bootstrap.Offcanvas.getInstance(myOffcanvas) || new bootstrap.Offcanvas(myOffcanvas);
+                        
+                        bsOffcanvas.hide();
+
+                        // รอให้เมนูพับเสร็จนิดนึง (300ms) แล้วค่อยเปลี่ยนหน้า จะได้ดูเนียนๆ
+                        setTimeout(() => {
+                            window.location.href = url;
+                        }, 300);
+                    } else {
+                        // ถ้าเป็นจอคอมพิวเตอร์ กดแล้วเปลี่ยนหน้าได้เลย ไม่ต้องรอพับเมนู
+                        window.location.href = url;
+                    }
+                }
+            });
+        });
+    });
+    </script>
 </head>
 <body>
 

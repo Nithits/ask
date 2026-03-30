@@ -1,0 +1,662 @@
+/* --- Admin Panel Global Variables --- */
+:root {
+    --brand-red: #E31E24;
+    --brand-orange: #F58220;
+    --brand-gradient: linear-gradient(135deg, #E31E24 0%, #F58220 100%);
+    --sidebar-bg: #1e293b; /* Dark Navy */
+    --sidebar-hover: rgba(255, 255, 255, 0.05);
+    --bg-body: #f1f5f9;
+}
+
+body { 
+    font-family: 'Prompt', sans-serif; 
+    background-color: var(--bg-body); 
+    color: #334155; 
+}
+
+/* --- Sidebar Style --- */
+.sidebar { 
+    min-height: 100vh; 
+    background-color: var(--sidebar-bg); 
+    position: fixed;
+    width: 260px;
+    z-index: 1000;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.05);
+}
+
+.sidebar-brand {
+    padding: 30px 25px;
+    background: rgba(0,0,0,0.1);
+}
+
+.sidebar-brand h5 {
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.menu-label {
+    color: #64748b;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 20px 25px 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sidebar a { 
+    color: #94a3b8; 
+    text-decoration: none; 
+    padding: 14px 25px; 
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    font-weight: 400;
+    border-left: 4px solid transparent;
+}
+
+.sidebar a i { 
+    width: 25px; 
+    font-size: 1.1rem; 
+}
+
+.sidebar a:hover { 
+    background-color: var(--sidebar-hover); 
+    color: #fff; 
+}
+
+.sidebar a.active { 
+    background: rgba(227, 30, 36, 0.1); 
+    color: #fff; 
+    border-left-color: var(--brand-red);
+    font-weight: 500;
+}
+
+.sidebar a.active i { 
+    color: var(--brand-orange); 
+}
+
+/* --- Main Content Style --- */
+.main-content { 
+    margin-left: 260px; 
+    width: calc(100% - 260px);
+    min-height: 100vh;
+    transition: 0.3s;
+}
+
+.top-navbar {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e2e8f0;
+    padding: 15px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.top-navbar .navbar-brand { 
+    font-weight: 700; 
+    color: #1e293b; 
+    font-size: 1.25rem; 
+}
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 5px 15px;
+    background: #fff;
+    border-radius: 50px;
+    border: 1px solid #e2e8f0;
+    transition: 0.2s;
+}
+
+.logout-btn {
+    margin: 40px 25px;
+    border-radius: 12px;
+    background: rgba(227, 30, 36, 0.05);
+    color: var(--brand-red) !important;
+    font-weight: 600;
+}
+
+.logout-btn:hover { 
+    background: var(--brand-red) !important; 
+    color: #fff !important; 
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 991px) {
+    .sidebar { width: 0; display: none; }
+    .main-content { margin-left: 0; width: 100%; }
+}
+
+/* --- Admin Dashboard & Table Styles --- */
+.admin-container { 
+    padding: 40px 20px; 
+    max-width: 1500px; 
+    margin: 0 auto; 
+}
+
+/* Stats Header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.page-title h2 { 
+    font-weight: 700; 
+    color: #1e293b; 
+    margin: 0; 
+}
+
+.page-title p { 
+    color: #64748b; 
+    margin: 0; 
+    font-size: 0.9rem; 
+}
+
+.total-badge {
+    background: #1e293b; 
+    color: white;
+    padding: 10px 25px; 
+    border-radius: 50px;
+    font-weight: 500; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Table Card Styling */
+.glass-card {
+    background: #ffffff;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+    overflow: hidden;
+}
+
+.custom-table { 
+    margin-bottom: 0; 
+}
+
+.custom-table thead th {
+    background: #fafbfc;
+    padding: 20px 25px;
+    color: #888;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.custom-table tbody td {
+    padding: 22px 25px;
+    vertical-align: middle;
+    border-bottom: 1px solid #f8fafc;
+    transition: 0.2s;
+}
+
+.custom-table tbody tr:hover td { 
+    background-color: #fcfcfc; 
+}
+
+/* Data Typography */
+.date-text { 
+    color: #94a3b8; 
+    font-size: 0.85rem; 
+    font-weight: 300; 
+}
+
+.company-name { 
+    font-weight: 600; 
+    color: #334155; 
+    display: block; 
+    font-size: 1rem; 
+}
+
+.contact-info .name { 
+    font-weight: 500; 
+    color: #1e293b; 
+}
+
+.contact-info .email { 
+    font-size: 0.85rem; 
+    color: var(--brand-orange); 
+}
+
+/* Status Badges */
+.badge-status {
+    padding: 8px 16px; 
+    border-radius: 10px; 
+    font-weight: 500; 
+    font-size: 0.8rem;
+}
+
+.status-pending { 
+    background: #fff7ed; 
+    color: #ea580c; 
+    border: 1px solid #ffedd5; 
+}
+
+.status-processing { 
+    background: #f0f9ff; 
+    color: #0284c7; 
+    border: 1px solid #e0f2fe; 
+}
+
+.status-success { 
+    background: #f0fdf4; 
+    color: #16a34a; 
+    border: 1px solid #dcfce7; 
+}
+
+/* Download Button */
+.btn-download {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-download:hover {
+    background-color: #16a34a;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(22, 163, 74, 0.2);
+}
+
+@media (max-width: 991px) {
+    .admin-container { padding: 20px 15px; }
+    .page-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+}
+
+/* --- Manage Contact Messages Styles --- */
+.admin-wrapper-inner { 
+    animation: fadeIn 0.4s ease-in-out; 
+}
+
+@keyframes fadeIn { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+}
+
+.content-card {
+    background: #ffffff;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    overflow: hidden;
+}
+
+/* User Info & Tags */
+.user-info .name { 
+    font-weight: 600; 
+    display: block; 
+    color: #2c3e50; 
+}
+
+.user-info .email { 
+    font-size: 0.85rem; 
+    color: var(--brand-orange, #F58220); 
+}
+
+.subject-tag { 
+    background: #fff5f5; 
+    color: #E31E24; 
+    padding: 6px 14px; 
+    border-radius: 8px; 
+    font-size: 0.85rem; 
+    font-weight: 500; 
+}
+
+.msg-preview { 
+    max-width: 400px; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    color: #666; 
+    font-weight: 300; 
+}
+
+/* Action Buttons */
+.btn-view { 
+    background-color: #f0f9ff; 
+    color: #0369a1; 
+    border: none; 
+    padding: 8px 12px; 
+    border-radius: 10px; 
+    transition: 0.3s; 
+}
+.btn-view:hover {
+    background-color: #e0f2fe;
+}
+
+.btn-delete { 
+    background-color: #fff1f2; 
+    color: #be123c; 
+    border: none; 
+    padding: 8px 12px; 
+    border-radius: 10px; 
+    transition: 0.3s; 
+}
+.btn-delete:hover {
+    background-color: #ffe4e6;
+}
+
+/* --- Manage Services Styles --- */
+.btn-brand {
+    background: var(--brand-gradient); 
+    color: white; 
+    border: none; 
+    border-radius: 50px;
+    padding: 10px 25px; 
+    font-weight: 600; 
+    box-shadow: 0 8px 20px rgba(227, 30, 36, 0.15); 
+    transition: 0.3s;
+}
+
+.btn-brand:hover { 
+    transform: translateY(-3px); 
+    color: white; 
+    opacity: 0.9; 
+}
+
+/* Accordion Styling */
+.accordion-item { 
+    border: none; 
+    border-radius: 20px !important; 
+    overflow: hidden; 
+    margin-bottom: 15px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); 
+}
+
+.accordion-button { 
+    padding: 20px 25px; 
+    font-weight: 600; 
+    color: #333; 
+}
+
+.accordion-button:not(.collapsed) { 
+    background-color: #fff; 
+    color: var(--brand-red); 
+    box-shadow: none; 
+}
+
+.accordion-button::after { 
+    filter: grayscale(1); 
+}
+
+.badge-count { 
+    background: #fff1f2; 
+    color: var(--brand-red); 
+    padding: 6px 14px; 
+    border-radius: 50px; 
+    font-size: 0.8rem; 
+}
+
+.table-custom thead th { 
+    background: #fafbfc; 
+    color: #888; 
+    font-size: 0.8rem; 
+    text-transform: uppercase; 
+    padding: 15px 20px; 
+}
+
+.table-custom td { 
+    padding: 15px 20px; 
+    vertical-align: middle; 
+    border-bottom: 1px solid #f8f9fa; 
+}
+
+.img-svc { 
+    width: 50px; 
+    height: 50px; 
+    object-fit: cover; 
+    border-radius: 12px; 
+}
+
+/* Action Buttons (Edit / Delete) */
+.btn-action-edit { 
+    background: #f0f9ff; 
+    color: #305366; 
+    border: none; 
+    width: 36px; 
+    height: 36px; 
+    border-radius: 10px; 
+    transition: 0.2s; 
+}
+
+.btn-action-delete { 
+    background: #fff1f2; 
+    color: #be123c; 
+    border: none; 
+    width: 36px; 
+    height: 36px; 
+    border-radius: 10px; 
+    transition: 0.2s; 
+}
+
+.btn-action-edit:hover, 
+.btn-action-delete:hover { 
+    transform: scale(1.1); 
+}
+
+/* --- Manage News Styles --- */
+.img-news-preview {
+    width: 100px; 
+    height: 65px; 
+    object-fit: cover;
+    border-radius: 12px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.status-active { 
+    background: #ecfdf5; 
+    color: #10b981; 
+    border: 1px solid #d1fae5;
+}
+
+.status-expired { 
+    background: #fff1f2; 
+    color: #e11d48; 
+    border: 1px solid #ffe4e6;
+}
+
+/* Form Design */
+.form-control-custom {
+    border-radius: 12px; 
+    border: 1px solid #e0e6ed; 
+    padding: 12px 15px; 
+    background: #fdfdfe;
+    transition: 0.3s;
+}
+
+.form-control-custom:focus { 
+    border-color: var(--brand-orange); 
+    box-shadow: 0 0 0 4px rgba(245, 130, 32, 0.1); 
+    outline: none;
+}
+
+/* --- Manage Jobs Styles --- */
+.stat-card {
+    background: #fff; 
+    border: none; 
+    border-radius: 20px;
+    padding: 25px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    transition: 0.3s; 
+    display: flex; 
+    align-items: center;
+}
+
+.stat-icon {
+    width: 60px; 
+    height: 60px; 
+    border-radius: 15px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-size: 1.5rem; 
+    margin-right: 20px;
+}
+
+.card-header-custom {
+    padding: 25px 30px; 
+    background: transparent; 
+    border-bottom: 1px solid #f1f5f9;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+}
+
+/* Badges */
+.badge-soft-red { 
+    background: #fff1f2; 
+    color: #e11d48; 
+    padding: 6px 14px; 
+    border-radius: 8px; 
+    font-weight: 500; 
+}
+
+.badge-soft-blue { 
+    background: #eff6ff; 
+    color: #2563eb; 
+    padding: 6px 14px; 
+    border-radius: 8px; 
+    font-weight: 500; 
+}
+
+/* Buttons */
+.btn-add-job {
+    background: linear-gradient(135deg, #E31E24 0%, #F58220 100%);
+    color: white !important; 
+    border: none; 
+    border-radius: 50px;
+    padding: 12px 30px; 
+    font-weight: 600; 
+    box-shadow: 0 10px 20px rgba(227,30,36,0.2);
+    transition: 0.3s;
+}
+
+.btn-add-job:hover { 
+    transform: translateY(-3px); 
+    opacity: 0.9; 
+}
+
+.btn-action-view { 
+    background: #f0f9ff; 
+    color: #0369a1; 
+    border: none; 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 10px; 
+    transition: 0.2s; 
+}
+
+.btn-action-view:hover { 
+    transform: scale(1.1); 
+}
+
+/* --- Dashboard / Quotation Management Styling --- */
+:root {
+    --soft-shadow: 0 8px 30px rgba(0,0,0,0.05);
+    --transition-speed: 0.3s;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid #f1f5f9;
+    box-shadow: var(--soft-shadow);
+    transition: transform var(--transition-speed) ease;
+}
+
+.stat-card:hover { transform: translateY(-5px); }
+
+.stat-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+}
+
+.custom-table-card {
+    background: white;
+    border-radius: 25px;
+    border: none;
+    box-shadow: var(--soft-shadow);
+}
+
+.table thead th {
+    background-color: #f8fafc;
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    border: none;
+    padding: 20px;
+}
+
+.table tbody td { padding: 20px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+.table tbody tr:last-child td { border-bottom: none; }
+.table tbody tr:hover { background-color: #fbfcfe; }
+
+/* Status Pill Dropdown */
+/* ปรับแต่ง Dropdown สถานะให้ดูเหมือนเม็ดแคปซูล */
+.status-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    padding-right: 2rem !important;
+    border-radius: 50px !important;
+    font-weight: 600 !important;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* เพิ่มสถานะสีเวลาเลือก */
+.status-select[data-status="success"] { background-color: #ecfdf5; color: #065f46; border-color: #34d399; }
+.status-select[data-status="processing"] { background-color: #fffbeb; color: #92400e; border-color: #fbbf24; }
+.status-select[data-status="pending"] { background-color: #f8fafc; color: #64748b; border-color: #e2e8f0; }
+
+/* Action Buttons */
+.btn-action {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    border: 1px solid #edf2f7;
+    background: white;
+}
+
+.btn-view { color: #3b82f6; }
+.btn-view:hover { background: #3b82f6; color: white; border-color: #3b82f6; }
+
+.btn-del { color: #ef4444; }
+.btn-del:hover { background: #ef4444; color: white; border-color: #ef4444; }
+
+.note-bubble {
+    background: #f1f5f9;
+    border-radius: 12px;
+    padding: 10px 15px;
+    font-size: 0.85rem;
+    color: #475569;
+    display: inline-block;
+    max-width: 200px;
+}

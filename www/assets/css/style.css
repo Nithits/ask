@@ -1,0 +1,1697 @@
+/* =========================================
+   Base Styles (ตั้งค่าพื้นฐาน)
+========================================= */
+body {
+    font-family: 'Prompt', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* =========================================
+   Brand Colors (สีประจำบริษัทจากโลโก้)
+========================================= */
+.text-brand-red { color: #E31E24; }
+.text-brand-green { color: #4CAF50; }
+.text-brand-teal { color: #009688; }
+.text-brand-orange { color: #F58220; }
+
+.bg-brand-orange { 
+    background-color: #F58220; 
+    color: #ffffff; 
+}
+
+/* =========================================
+   Navbar Styles (แถบเมนูนำทาง)
+========================================= */
+.navbar-brand img {
+    height: 50px;
+    object-fit: contain;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: #495057;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover, 
+.nav-link.active {
+    color: #E31E24; /* เมื่อเอาเมาส์ชี้ เมนูจะเป็นสีแดงของโลโก้ */
+}
+
+/* =========================================
+   Custom Buttons (ปุ่มกด)
+========================================= */
+.btn-quote {
+    background-color: #F58220; /* สีส้มจากโลโก้ */
+    border-color: #F58220;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-quote:hover {
+    background-color: #e06d10; /* สีส้มเข้มขึ้นเมื่อเอาเมาส์ชี้ */
+    border-color: #e06d10;
+    color: white;
+    transform: translateY(-2px); /* เอฟเฟกต์ปุ่มยกตัวขึ้นนิดนึง */
+    box-shadow: 0 4px 8px rgba(245, 130, 32, 0.3);
+}
+
+/* =========================================
+   Footer Styles (ส่วนท้ายเว็บ)
+========================================= */
+.footer-link {
+    color: #adb5bd;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #F58220; /* ชี้ลิงก์ส่วนท้ายแล้วเปลี่ยนเป็นสีส้ม */
+}
+
+/* =========================================
+   Admin Panel Styles
+========================================= */
+body { 
+    font-family: 'Prompt', sans-serif; 
+    background-color: #f4f6f9; 
+}
+
+/* Sidebar Styles */
+.sidebar { 
+    min-height: 100vh; 
+    background-color: #343a40; 
+}
+
+.sidebar a { 
+    color: #c2c7d0; 
+    text-decoration: none; 
+    padding: 15px 20px; 
+    display: block; 
+    border-bottom: 1px solid #4f5962;
+    transition: all 0.2s ease-in-out;
+}
+
+.sidebar a:hover, 
+.sidebar a.active { 
+    background-color: #007bff; 
+    color: white; 
+}
+
+
+/* ------------------------------------------------------index.php*------------------------------------------------/
+/* --- Global & Brand Variables --- */
+:root {
+    --brand-red: #E31E24;
+    --brand-red-dark: #B2181C;
+    --brand-orange: #F58220;
+    --brand-gradient: linear-gradient(135deg, var(--brand-red) 0%, var(--brand-orange) 100%);
+    --brand-dark: #1a1a1a;
+    --brand-light: #fdfdfd;
+    --text-main: #2d3436;
+    --text-muted: #636e72;
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+body, h1, h2, h3, h4, h5, h6, p, span, a, button { 
+    font-family: 'Prompt', sans-serif !important; 
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- Hero Section --- */
+.hero-banner {
+    height: 80vh;
+    background: linear-gradient(rgba(26, 26, 26, 0.6), rgba(227, 30, 36, 0.2)), 
+                url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1600');
+    background-size: cover; 
+    background-position: center; 
+    display: flex; 
+    align-items: center;
+}
+
+.hero-text-box { 
+    border-left: 8px solid var(--brand-orange); 
+    padding-left: 35px; 
+}
+
+.hero-text-box h1 { color: #fff !important; font-weight: 700; }
+.hero-text-box p { color: rgba(255,255,255,0.9) !important; font-weight: 300; }
+
+/* --- News Section --- */
+.carousel-item-custom { height: 500px; border-radius: 0px; }
+.news-overlay { 
+    background: linear-gradient(transparent, rgba(178, 24, 28, 0.95)); 
+    padding: 100px 0 60px; 
+}
+
+/* --- Feature Cards --- */
+.feature-card { 
+    border-top: 5px solid var(--brand-red); 
+    border-radius: 15px; 
+    transition: var(--transition); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+}
+
+.feature-card:hover { 
+    transform: translateY(-15px); 
+    box-shadow: 0 20px 40px rgba(227, 30, 36, 0.15); 
+    border-color: var(--brand-orange) !important; 
+}
+
+.icon-box-modern { 
+    width: 70px; 
+    height: 70px; 
+    background: var(--brand-gradient); 
+    color: white; 
+    border-radius: 20px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 2rem; 
+    margin: 0 auto; 
+    box-shadow: 0 10px 20px rgba(227, 30, 36, 0.2); 
+    transition: transform 0.3s ease; 
+}
+
+/* --- Lab Grid --- */
+.lab-grid-item { border: 1px solid #f1f1f1; transition: var(--transition); }
+.lab-icon-red { 
+    background: var(--brand-gradient); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    font-size: 3.2rem; 
+}
+
+.lab-grid-item:hover { background: var(--brand-gradient); transform: scale(1.05); color: #fff !important; }
+.lab-grid-item:hover * { color: #fff !important; -webkit-text-fill-color: #fff; }
+
+/* --- Common Components --- */
+.btn-brand { 
+    background: var(--brand-gradient); 
+    border: none; 
+    color: #fff !important; 
+    box-shadow: 0 6px 20px rgba(245, 130, 32, 0.4); 
+    transition: var(--transition); 
+    border-radius: 50px; 
+    padding: 12px 30px; 
+}
+
+.section-title-red { font-weight: 700; color: var(--brand-red-dark); }
+.bg-brand-gradient { background: var(--brand-gradient); }
+
+.hover-translate:hover {
+    background: linear-gradient(to right, #fff, #fff5f5);
+    border-left: 4px solid var(--brand-red);
+}
+
+
+/* -----------------------------------about.php----------------------------------------------------------------- */
+.about-hero {
+    padding: 140px 0 100px 0;
+    background: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)), 
+                url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1600');
+    background-size: cover; 
+    background-position: center;
+}
+
+.hero-subtitle {
+    font-weight: 500; 
+    color: var(--brand-dark); 
+    letter-spacing: 2px; 
+    text-transform: uppercase;
+}
+
+.hero-title span { 
+    color: var(--brand-red); 
+}
+
+.main-img-wrapper {
+    position: relative;
+}
+
+.main-img-wrapper img { 
+    width: 100%; 
+    border-radius: 30px; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+    position: relative; 
+    z-index: 2; 
+}
+
+.decoration-shape { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    border: 10px solid var(--brand-orange); 
+    border-radius: 30px; 
+    top: 30px; 
+    right: -20px; 
+    z-index: 1; 
+    opacity: 0.15; 
+}
+
+.info-card-modern { 
+    background: #fff; 
+    padding: 40px; 
+    border-radius: 20px; 
+    height: 100%; 
+    border: 1px solid #f1f1f1; 
+    transition: 0.4s; 
+}
+
+.info-card-modern:hover { 
+    transform: translateY(-10px); 
+    border-color: var(--brand-orange); 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+}
+
+.quote-icon {
+    font-size: 3rem; 
+    color: var(--brand-orange); 
+    opacity: 0.5;
+}
+
+/* Responsive for About Page */
+@media (max-width: 991px) {
+    .about-hero { padding: 100px 0 60px 0; text-align: center; }
+    .decoration-shape { display: none; }
+    .main-img-wrapper { margin-top: 30px; }
+}
+
+/* --- Services Page Styles --- */
+/* --- Service Banner (แบบพื้นหลังสว่างจางๆ) --- */
+.service-banner {
+    position: relative;
+    padding: 160px 0 120px; 
+    /* เปลี่ยนจากสีดำโปร่งแสง เป็นสีขาวโปร่งแสง (0.85 - 0.9) เพื่อให้ภาพดูจางๆ */
+    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.9)),
+                url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1600') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    text-align: center;
+}
+
+/* คำโปรยด้านบน (สีเข้ม) */
+.service-banner h6 {
+    color: #333333 !important;
+    font-weight: 700 !important;
+    letter-spacing: 2px;
+    text-shadow: none !important; /* เอาเงาออกเพราะพื้นสว่างแล้ว */
+}
+
+/* หัวข้อหลัก (สีแดงแบรนด์) */
+.service-banner h1 {
+    color: var(--brand-red, #E31E24) !important;
+    font-weight: 800 !important;
+    text-shadow: none !important;
+    margin-bottom: 20px;
+}
+
+/* เส้นใต้ */
+.service-banner .title-underline-gradient {
+    height: 4px;
+    width: 80px;
+    background: var(--brand-gradient, linear-gradient(135deg, #E31E24 0%, #F58220 100%));
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+/* คำอธิบายด้านล่าง (สีเทาเข้ม) */
+.service-banner p.lead {
+    color: #555555 !important;
+    font-weight: 500 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+
+/* Responsive บนมือถือ */
+@media (max-width: 767px) {
+    .service-banner { padding: 120px 0 80px; }
+    .service-banner h1 { font-size: 2.2rem; }
+    .service-banner p.lead { font-size: 1rem; }
+}
+
+/* --- Service Tabs (ปรับให้เหมือน Portfolio 100%) --- */
+.service-tabs-wrapper {
+    margin-top: -30px; 
+    margin-bottom: 40px;
+    position: relative; 
+    z-index: 10;
+}
+
+.service-tabs {
+    display: flex;
+    flex-wrap: wrap; /* บังคับให้ตัดขึ้นบรรทัดใหม่ได้ */
+    justify-content: center; /* จัดให้อยู่กึ่งกลาง */
+    gap: 10px;
+    border-bottom: none;
+}
+
+.service-tabs .nav-link { 
+    background: #fff; 
+    border: 1px solid #eee; 
+    color: #555; 
+    padding: 10px 25px; 
+    border-radius: 50px; 
+    font-size: 0.95rem;
+    font-weight: 500; 
+    transition: all 0.3s ease; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03); 
+    cursor: pointer;
+}
+
+/* เอฟเฟกต์เวลาเอาเมาส์ชี้ (Hover) */
+.service-tabs .nav-link:hover {
+    border-color: var(--brand-orange);
+    color: var(--brand-orange);
+    background: #fff;
+}
+
+/* สถานะ Active (เมื่อถูกกดเลือก) */
+.service-tabs .nav-link.active { 
+    background: var(--brand-gradient) !important; 
+    color: #fff !important; 
+    border-color: transparent !important; 
+    box-shadow: 0 8px 20px rgba(227, 30, 36, 0.2) !important; 
+}
+
+/* --- การแสดงผลบนมือถือ (ปัดซ้าย-ขวาได้) --- */
+@media (max-width: 767px) {
+    .service-tabs {
+        flex-wrap: nowrap !important; /* บนมือถือให้เป็นบรรทัดเดียว */
+        justify-content: flex-start !important; /* ชิดซ้ายเพื่อให้รู้ว่าเลื่อนได้ */
+        overflow-x: auto;
+        padding-bottom: 15px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    
+    .service-tabs::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .service-tabs .nav-link {
+        white-space: nowrap; /* ป้องกันคำตกบรรทัด */
+    }
+}
+
+.service-tabs .nav-link { 
+    border-radius: 50px; 
+    padding: 12px 28px; 
+    font-weight: 500; 
+    transition: 0.3s; 
+    background: #fff; 
+    border: 1px solid #eee; 
+    color: #444; 
+    margin-bottom: 10px;
+}
+
+.service-tabs .nav-link.active { 
+    background: var(--brand-gradient) !important; 
+    color: #fff !important; 
+    border-color: transparent; 
+    box-shadow: 0 10px 20px rgba(227,30,36,0.2); 
+}
+
+.instrument-card { 
+    border-radius: 20px; 
+    border: 1px solid #f1f1f1; 
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    overflow: hidden;
+}
+
+.instrument-card:hover { 
+    transform: translateY(-10px); 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important; 
+    border-color: var(--brand-orange); 
+}
+
+.instrument-img-container {
+    height: 250px; 
+    overflow: hidden; 
+    border-radius: 20px 20px 0 0;
+}
+
+.instrument-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.instrument-card:hover .instrument-img-container img {
+    transform: scale(1.1);
+}
+
+.card-title-box { 
+    border-top: 5px solid var(--brand-red); 
+    padding: 20px; 
+    text-align: center; 
+}
+
+.iso-notice {
+    /* ปรับพื้นหลังเป็นสีเข้มแบบไล่เฉดให้ดูมีมิติ (Modern Dark) */
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%) !important;
+    border-radius: 30px;
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+    color: #ffffff !important; /* บังคับตัวหนังสือเป็นสีขาว */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    border: none;
+}
+
+/* หัวข้อ ISO/IEC 17025 (สีเหลืองทองชัดเจน) */
+.iso-notice h4 {
+    color: #ffc107 !important; 
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ข้อความรายละเอียด (ขาวนวล อ่านง่าย ไม่กลืนพื้นหลัง) */
+.iso-notice p {
+    color: #ffffff !important;
+    font-weight: 300;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 850px;
+    margin: 0 auto;
+    opacity: 1 !important; /* ห้ามโปร่งแสงจนเกินไป */
+}
+
+/* เพิ่มลูกเล่น Watermark ตัวเลข ISO ด้านหลังจางๆ */
+.iso-notice::after {
+    content: '17025';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    font-size: 12rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.03); /* จางมากเพื่อให้เห็นเป็นมิติ */
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ทำให้เนื้อหาอยู่ด้านบนสุดเหนือ Watermark */
+.iso-notice h4, .iso-notice p {
+    position: relative;
+    z-index: 1;
+}
+
+/* ปรับปรุงสำหรับมือถือ */
+@media (max-width: 768px) {
+    .iso-notice {
+        padding: 40px 20px;
+        border-radius: 20px;
+    }
+    .iso-notice h4 {
+        font-size: 1.5rem;
+    }
+}
+
+/* --- Calibration Scope Page Styles --- */
+:root {
+    --scope-head-red: #f0443c;
+}
+
+/* --- Calibration Scope Banner --- */
+/* --- Calibration Scope Banner (บังคับสีขาว) --- */
+/* --- Scope Banner (แบบพื้นหลังสว่างจางๆ คลุมโทนเว็บ) --- */
+.scope-banner {
+    position: relative;
+    padding: 160px 0 120px; 
+    /* Overlay สีขาวโปร่งแสง 85% */
+    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.9)),
+                url('https://www.innovative-instrument.com/wp-content/uploads/2024/12/Air1.webp') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    text-align: center;
+}
+
+/* คำโปรย Precision & Excellence (สีเทาเข้ม) */
+.scope-banner h6 {
+    color: #333333 !important;
+    font-weight: 700 !important;
+    letter-spacing: 2px;
+    text-shadow: none !important;
+}
+
+/* หัวข้อหลัก Scope (สีแดงแบรนด์) */
+.scope-banner h1 {
+    color: var(--brand-red, #E31E24) !important;
+    font-weight: 800 !important;
+    text-shadow: none !important;
+    margin-bottom: 20px;
+}
+
+/* คำอธิบายด้านล่าง (สีเทา) */
+.scope-banner p.lead {
+    color: #555555 !important;
+    font-weight: 500 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+
+/* Responsive บนมือถือ */
+@media (max-width: 767px) {
+    .scope-banner { padding: 120px 0 80px; }
+    .scope-banner h1 { font-size: 2.2rem; }
+    .scope-banner p.lead { font-size: 1rem; }
+}
+
+.title-underline { 
+    height: 5px; 
+    width: 80px; 
+    background: var(--brand-gradient); 
+    margin: 20px auto; 
+    border-radius: 10px; 
+}
+
+.scope-table-block { 
+    border-radius: 15px; 
+    overflow: hidden; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+    border: none; 
+    margin-bottom: 40px; 
+}
+
+.scope-table thead .scope-category-title th {
+    background: var(--brand-gradient) !important;
+    padding: 20px; 
+    font-size: 1.2rem;
+    color: #fff !important;
+    text-align: center;
+    border: none;
+}
+
+.scope-column-head th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    text-align: center;
+}
+
+.scope-group-row td {
+    background: #f8f9fa;
+    border-bottom: 1px solid #eee;
+}
+
+.scope-download-btn {
+    background: var(--brand-gradient); 
+    border: none; 
+    border-radius: 50px; 
+    padding: 15px 40px;
+    font-weight: 600; 
+    transition: 0.3s;
+    color: #fff !important;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.scope-download-btn:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 10px 20px rgba(227, 30, 36, 0.3); 
+    color: #fff; 
+}
+
+.scope-iso-notice {
+    background: #1a1a1a; 
+    border-radius: 30px; 
+    padding: 60px 40px; /* เพิ่มพื้นที่ว่างให้ดูโปร่ง */
+    position: relative; 
+    overflow: hidden;
+    color: #ffffff !important; /* บังคับให้ข้อความหลักเป็นสีขาว */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* ปรับแต่งหัวข้อ ISO (ตัวหนา สีเหลืองทอง) */
+.scope-iso-notice h4 {
+    color: #ffc107 !important; /* สีเหลืองทองตัดกับพื้นหลังมืดได้ดีที่สุด */
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* ปรับแต่งข้อความรายละเอียด (ขาวนวล อ่านง่าย) */
+.scope-iso-notice p.lead {
+    color: #ffffff !important; /* เปลี่ยนจาก opacity ต่ำ เป็นขาวชัดเจน */
+    font-weight: 300;
+    line-height: 1.8;
+    max-width: 850px;
+    margin: 0 auto;
+    opacity: 1 !important; /* ป้องกันการจางจนอ่านไม่ออก */
+}
+
+/* เพิ่มลูกเล่น Watermark พื้นหลัง (ถ้าต้องการให้ดูทันสมัย) */
+.scope-iso-notice::before {
+    content: 'ISO/IEC 17025';
+    position: absolute;
+    bottom: -20px;
+    right: -10px;
+    font-size: 6rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.03); /* จางมากๆ เพื่อสร้างมิติ */
+    z-index: 1;
+}
+
+.scope-iso-notice .position-relative {
+    z-index: 2; /* ดันข้อความให้อยู่เหนือ Watermark */
+}
+
+/* --- News & Updates Page Styles --- */
+.news-hero-clean {
+    position: relative;
+    padding: 160px 0 120px;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.95)), 
+        url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1600'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    text-align: center;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 3.8rem);
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+
+.hero-subtitle {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--brand-orange);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.title-underline-modern {
+    height: 5px;
+    width: 80px;
+    background: var(--brand-gradient);
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.news-hero-clean .container {
+    animation: fadeInUp 1s ease-out;
+}
+
+.news-card-clean {
+    border-radius: 25px; 
+    border: 1px solid #f1f1f1; 
+    transition: 0.4s;
+    background: #fff; 
+    height: 100%; 
+    display: flex; 
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.news-card-clean:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(227, 30, 36, 0.1) !important;
+}
+
+.news-img-box { 
+    height: 240px; 
+    overflow: hidden; 
+    position: relative; 
+}
+
+.news-img-box img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    transition: 0.6s; 
+}
+
+.news-card-clean:hover .news-img-box img {
+    transform: scale(1.1);
+}
+
+.news-date-tag {
+    position: absolute; 
+    top: 15px; 
+    left: 15px; 
+    background: #fff; 
+    padding: 5px 15px; 
+    border-radius: 50px; 
+    font-size: 0.8rem; 
+    color: var(--brand-red); 
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.news-title {
+    transition: color 0.3s ease;
+}
+
+.news-card-clean:hover .news-title {
+    color: var(--brand-red);
+}
+
+.btn-read-more i {
+    transition: transform 0.3s ease;
+}
+
+.btn-read-more:hover i {
+    transform: translateX(5px);
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .news-hero-clean { padding: 100px 0 60px; }
+}
+
+/* --- News Detail Page Styles --- */
+.news-detail-container {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Breadcrumb Styling */
+.breadcrumb-item a { 
+    color: var(--brand-red); 
+    text-decoration: none; 
+    font-size: 0.9rem; 
+}
+
+.breadcrumb-item.active { 
+    color: #888; 
+    font-size: 0.9rem; 
+    font-weight: 300; 
+}
+
+/* Article Header & Badge */
+.date-badge-detail {
+    background: var(--brand-gradient);
+    color: white; 
+    padding: 8px 25px; 
+    border-radius: 50px;
+    font-weight: 500; 
+    display: inline-block; 
+    font-size: 0.85rem;
+    box-shadow: 0 5px 15px rgba(227, 30, 36, 0.2);
+}
+
+/* Featured Image Container */
+.featured-img-container {
+    border-radius: 30px; 
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+    margin-bottom: 50px; 
+    border: 1px solid #f8f9fa;
+}
+
+.featured-img { 
+    width: 100%; 
+    max-height: 600px; 
+    object-fit: cover; 
+}
+
+/* Article Content Body */
+.content-body {
+    font-size: 1.15rem; 
+    line-height: 2.1; 
+    color: #444; 
+    font-weight: 300;
+    text-align: justify;
+}
+
+/* Social Share Box */
+.share-box {
+    background: #fdfdfd; 
+    border-radius: 20px; 
+    padding: 30px;
+    border: 1px solid #f0f0f0; 
+    margin-top: 60px;
+}
+
+.btn-share {
+    width: 45px; 
+    height: 45px; 
+    border-radius: 50%; 
+    display: inline-flex;
+    align-items: center; 
+    justify-content: center; 
+    color: #fff;
+    margin: 0 8px; 
+    transition: 0.3s; 
+    text-decoration: none; 
+    font-size: 1.2rem;
+}
+
+.btn-share:hover { 
+    transform: translateY(-5px); 
+    opacity: 0.9; 
+    color: #fff; 
+}
+
+.btn-fb { background: #3b5998; }
+.btn-line { background: #00b900; }
+
+/* Back Button Styling */
+.btn-back {
+    border: 2px solid #eee; 
+    color: #777; 
+    border-radius: 50px;
+    padding: 12px 40px; 
+    transition: 0.3s; 
+    font-weight: 500; 
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-back:hover { 
+    border-color: var(--brand-red); 
+    color: var(--brand-red); 
+    background: #fff5f5; 
+}
+
+@media (max-width: 768px) {
+    .featured-img-container { border-radius: 15px; }
+    .content-body { font-size: 1.05rem; }
+}
+
+/* --- Contact Page Styles --- */
+.contact-hero-clean {
+    position: relative;
+    padding: 140px 0 100px;
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600');
+    background-size: cover; 
+    background-position: center; 
+    background-attachment: fixed; 
+    text-align: center;
+}
+
+/* --- Contact Page Styles --- */
+.contact-info-side { 
+    background: var(--brand-dark); 
+    color: #ffffff !important; /* บังคับให้ข้อความหลักทั้งหมดเป็นสีขาวบริสุทธิ์ */
+    padding: 60px 45px; 
+    border-radius: 30px 0 0 30px; 
+}
+
+/* ปรับแต่งหัวข้อ (Contact Information) */
+.contact-info-side h3 {
+    color: #ffffff !important;
+    font-weight: 700;
+}
+
+/* ปรับแต่งหัวข้อรองในแต่ละไอเทม (Office, Hotline, Email) */
+.contact-info-side .info-text h5 {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+/* ปรับแต่งไอคอนให้สว่างและเด่นขึ้น (ใช้สีเหลือง Amber เพื่อตัดกับพื้นหลังมืด) */
+.contact-info-side .info-icon {
+    color: #ffc107 !important; /* สีเหลืองทองสว่าง */
+    font-size: 1.5rem;
+}
+
+/* ปรับแต่งข้อความรายละเอียด (ขาวนวล อ่านง่าย ไม่จางเกินไป) */
+.contact-info-side .info-text p {
+    color: rgba(255, 255, 255, 0.9) !important; /* ขาว 90% เพื่อให้อ่านง่ายแต่ไม่จ้าตา */
+    font-weight: 300;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* ปรับแต่งส่วน Follow Us ให้ชัดเจนขึ้น */
+.contact-info-side .small.opacity-50 {
+    color: #ffffff !important; /* เปลี่ยนจากจางๆ เป็นขาวบริสุทธิ์ */
+    opacity: 1 !important;    /* ยกเลิกค่าโปร่งแสงที่ทำให้ดูเทา */
+    font-weight: 500;        /* เพิ่มความหนาเล็กน้อยให้อ่านง่ายขึ้น */
+    letter-spacing: 2px;
+}
+
+/* แถม: ปรับไอคอน Social ให้สว่างชัดเจน */
+.contact-info-side .social-link-light {
+    color: #ffffff !important;
+    opacity: 0.8;
+    transition: 0.3s ease;
+}
+
+.contact-info-side .social-link-light:hover {
+    opacity: 1;
+    color: var(--brand-orange) !important; /* ให้เปลี่ยนเป็นสีส้มเวลาเอาเมาส์วาง */
+    transform: translateY(-3px);
+}
+
+.contact-form-side {
+    padding: 3rem;
+}
+
+.btn-send-message { 
+    background: var(--brand-gradient); 
+    color: white !important; 
+    border: none; 
+    padding: 12px 35px; 
+    border-radius: 50px; 
+    font-weight: 600; 
+    transition: 0.3s; 
+    box-shadow: 0 5px 15px rgba(227, 30, 36, 0.2);
+}
+
+.btn-send-message:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(227, 30, 36, 0.3);
+    opacity: 0.9;
+}
+
+.contact-card-wrap {
+    border-radius: 30px; 
+    overflow: hidden;
+}
+
+.info-item .info-icon {
+    min-width: 40px;
+}
+
+@media (max-width: 991px) {
+    .contact-info-side { 
+        border-radius: 20px 20px 0 0; 
+        padding: 40px 30px;
+    }
+    .contact-form-side {
+        padding: 30px 20px;
+    }
+}
+
+/* --- Quote Page Styles --- */
+:root {
+    --q-red: #E31E24;
+    --q-orange: #F58220;
+    --q-gradient: linear-gradient(135deg, #E31E24 0%, #F58220 100%);
+    --q-bg: #f8fafc;
+}
+
+.quote-page {
+    background-color: var(--q-bg);
+}
+
+.quote-hero {
+    background: var(--q-gradient);
+    padding: 120px 0 140px;
+    text-align: center; 
+    color: white;
+    clip-path: ellipse(150% 100% at 50% 0%);
+}
+
+.quote-card {
+    background: #fff; 
+    border: none; 
+    border-radius: 30px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.06);
+    margin-top: -80px; 
+    overflow: hidden;
+}
+
+.form-section-title {
+    font-weight: 600; 
+    color: var(--q-red); 
+    font-size: 1.15rem;
+    margin-bottom: 30px; 
+    border-bottom: 2px solid #f8f9fa; 
+    padding-bottom: 12px;
+}
+
+.quote-page .form-control {
+    border-radius: 12px; 
+    border: 1px solid #e2e8f0; 
+    padding: 12px 18px;
+    font-weight: 300; 
+    transition: 0.3s;
+}
+
+.quote-page .form-control:focus {
+    border-color: var(--q-orange); 
+    box-shadow: 0 0 0 4px rgba(245, 130, 32, 0.1);
+    outline: none;
+}
+
+.file-upload-wrapper {
+    border: 2px dashed #cbd5e1; 
+    border-radius: 20px; 
+    padding: 40px 20px;
+    text-align: center; 
+    transition: 0.3s; 
+    background: #fcfdfe; 
+    cursor: pointer;
+}
+
+.btn-submit-quote {
+    background: var(--q-gradient); 
+    color: white !important; 
+    border: none;
+    border-radius: 50px; 
+    padding: 15px 45px; 
+    font-weight: 600;
+    font-size: 1.1rem; 
+    box-shadow: 0 10px 25px rgba(227,30,36,0.25);
+    transition: 0.3s;
+}
+
+.btn-submit-quote:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(227,30,36,0.35);
+    opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+    .quote-hero { padding: 80px 0 100px; }
+    .quote-card { border-radius: 20px; margin-top: -60px; }
+    .form-section-title { font-size: 1rem; }
+}
+
+/* --- Career & Job Page Styles --- */
+.career-hero {
+    position: relative;
+    /* เพิ่ม Padding-bottom ให้มากขึ้นเพื่อเว้นที่ว่างด้านล่าง */
+    padding: 160px 0 180px; 
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), 
+                url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1600');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    text-align: center;
+    color: white;
+}
+
+/* แก้ไขปัญหาข้อความกลืนพื้นหลัง */
+/* --- Career Hero Banner (แบบพื้นหลังสว่างจางๆ) --- */
+.career-hero {
+    position: relative;
+    padding: 160px 0 120px; 
+    /* Overlay สีขาวโปร่งแสง 85% */
+    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.9)),
+                url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    text-align: center;
+}
+
+/* คำโปรย Join Our Team (สีเทาเข้ม) */
+.career-hero h6 {
+    color: #333333 !important;
+    font-weight: 700 !important;
+    letter-spacing: 2px;
+    text-shadow: none !important;
+}
+
+/* หัวข้อหลัก (สีดำ/เทาเข้ม เหมือนหน้าอื่นๆ) */
+.career-hero h1 {
+    color: #333333 !important; /* เปลี่ยนตรงนี้เป็นสีเทาเข้ม/ดำ */
+    font-weight: 800 !important;
+    text-shadow: none !important;
+    margin-bottom: 20px;
+}
+
+/* เน้นชื่อบริษัทให้เป็นสีแดงแบรนด์ */
+.career-hero h1 span {
+    color: var(--brand-red, #E31E24) !important; /* เปลี่ยนตรงนี้เป็นสีแดง */
+}
+
+/* คำอธิบายด้านล่าง (สีเทา) */
+.career-hero p.lead {
+    color: #555555 !important;
+    font-weight: 500 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+
+/* Responsive บนมือถือ */
+@media (max-width: 767px) {
+    .career-hero { padding: 120px 0 80px; }
+    .career-hero h1 { font-size: 2.2rem; }
+    .career-hero p.lead { font-size: 1rem; }
+}
+
+/* ส่วนของเนื้อหาด้านล่าง */
+.career-wrapper {
+    /* ปรับจาก -80px หรือ -100px ให้เหลือน้อยลง หรือเป็น 0 ถ้าไม่อยากให้ทับเลย */
+    margin-top: -60px; 
+    position: relative;
+    z-index: 10;
+}
+
+.nav-card {
+    background: #fff;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    transition: 0.3s;
+    cursor: pointer;
+    /* ใส่ขอบเทาอ่อน และจองพื้นที่ขอบซ้าย 5px ไว้ล่วงหน้าการ์ดจะได้ไม่ขยับ */
+    border: 1px solid #f1f1f1; 
+    border-left: 5px solid transparent; 
+}
+
+/* เอฟเฟกต์เวลาเอาเมาส์ชี้ (Hover) */
+.nav-card:hover {
+    background: #fafafa;
+    border-left-color: #ffd8d9; /* ขึ้นเส้นขอบสีแดงอ่อนๆ */
+}
+
+/* เอฟเฟกต์เวลาการ์ดถูกกดเลือก (Active) */
+.nav-card.active { 
+    background: #fff;
+    border-color: #eee; /* ให้ขอบทั่วไปเป็นสีเทา */
+    border-left-color: var(--brand-red) !important; /* บังคับขอบซ้ายเป็นสีแดงแบรนด์ */
+    box-shadow: 0 15px 40px rgba(227, 30, 36, 0.1); 
+}
+
+/* ทำให้ชื่อตำแหน่งงานใน Sidebar เปลี่ยนเป็นสีแดงเวลาถูกเลือก */
+.nav-card h5 {
+    transition: 0.3s;
+}
+
+.nav-card.active h5 {
+    color: var(--brand-red);
+}
+
+.job-detail-panel {
+    background: #fff;
+    padding: 3rem; /* ตรวจสอบให้แน่ใจว่า padding ไม่น้อยเกินไป */
+    border-radius: 1.5rem;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+}
+
+.salary-box {
+    background: #fff5f5; 
+    border: 1px solid #fee2e2;
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+.salary-box .icon-box {
+    width: 50px; height: 50px; 
+    background: var(--brand-gradient); 
+    color: #fff; border-radius: 15px; 
+    display: flex; align-items: center; justify-content: center; 
+    font-size: 1.5rem;
+}
+
+@media (max-width: 991px) {
+    .career-hero { 
+        padding: 100px 0 120px; 
+    }
+    .career-wrapper { 
+        margin-top: -40px; 
+    }
+    .job-detail-panel {
+        padding: 2rem 1.5rem !important;
+    }
+}
+
+/* --- Footer & Quick Contact Styles --- */
+:root {
+    --color-facebook: #1877F2;
+    --color-line: #00B900;
+}
+
+.qc-bar {
+    background: #ffffff;
+    padding: 60px 0;
+    border-top: 1px solid #f0f0f0;
+    font-family: 'Prompt', sans-serif;
+}
+
+.qc-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.2;
+}
+
+.qc-desc {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.8;
+    border-left: 4px solid var(--brand-orange);
+    padding-left: 20px;
+}
+
+/* สไตล์ปุ่ม Social ในแถบ Quick Contact */
+.qc-social a {
+    display: inline-flex;
+    width: 50px;
+    height: 50px;
+    color: #fff !important;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-left: 10px;
+    transition: 0.4s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* กำหนดสีพื้นหลังตามแบรนด์จริง */
+.qc-social .btn-facebook { background-color: var(--color-facebook); }
+.qc-social .btn-line { background-color: var(--color-line); }
+
+.qc-social a:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+    opacity: 0.9; 
+}
+
+/* Main Footer */
+.main-footer {
+    background-color: #fcfcfc;
+    padding: 80px 0 40px;
+    border-top: 1px solid #eee;
+    font-family: 'Prompt', sans-serif;
+}
+
+.f-logo { 
+    max-width: 160px; 
+    margin-bottom: 25px; 
+}
+
+.f-h { 
+    font-size: 1.15rem; 
+    font-weight: 700; 
+    color: #1a1a1a; 
+    margin-bottom: 25px; 
+    display: block; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+}
+
+.f-links { list-style: none; padding: 0; margin: 0; }
+.f-links li { 
+    margin-bottom: 15px; 
+    font-size: 0.95rem; 
+    color: #555; 
+    font-weight: 300; 
+    display: flex; 
+    align-items: flex-start; 
+}
+
+.f-links i { 
+    color: var(--brand-red); 
+    margin-right: 12px; 
+    margin-top: 5px; 
+    width: 15px; 
+}
+
+/* สไตล์ไอคอน Social ในตัว Footer main */
+.f-social-icon {
+    width: 35px; height: 35px; transition: 0.3s; 
+}
+.f-social-icon:hover { 
+    transform: scale(1.1); 
+    filter: brightness(1.1); 
+}
+
+/* Copyright Bar */
+.copyright-bar {
+    background: #fff;
+    padding: 25px 0;
+    border-top: 1px solid #f0f0f0;
+    font-size: 0.85rem;
+    color: #999;
+    font-family: 'Prompt', sans-serif;
+}
+
+/* ปุ่มเลื่อนขึ้นบน */
+.btn-up { 
+    width: 40px; height: 40px; 
+    background: #eee; 
+    border-radius: 10px; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    cursor: pointer; 
+    transition: 0.3s; 
+    color: #555;
+}
+.btn-up:hover { 
+    background: var(--brand-red); 
+    color: #fff; 
+    transform: translateY(-3px); 
+}
+
+@media (max-width: 991px) {
+    .qc-bar { text-align: center; }
+    .qc-desc { border: none; padding-left: 0; margin: 20px 0; }
+    .qc-social { justify-content: center; display: flex; margin-top: 20px; }
+    .main-footer { text-align: center; }
+    .f-links li { justify-content: center; }
+    .f-social-wrap { justify-content: center; }
+}
+
+/* --- Navbar & Language Switcher Styles --- */
+.nav-link { 
+    font-weight: 400; 
+    transition: 0.3s; 
+    color: #555;
+    position: relative;
+}
+
+.nav-link:hover { 
+    color: var(--brand-red, #E31E24) !important; 
+}
+
+/* สไตล์สำหรับเมนูที่กำลังเปิดอยู่ (Active) */
+.nav-link.active {
+    color: var(--brand-red, #E31E24) !important;
+    font-weight: 600;
+}
+
+/* เพิ่มขีดเส้นใต้สีแดงให้เมนูที่กำลัง Active (ลูกเล่นเพิ่มเติม) */
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25px;
+    height: 3px;
+    background-color: var(--brand-red, #E31E24);
+    border-radius: 5px;
+}
+
+/* Language Switcher */
+.btn-lang { 
+    font-size: 0.8rem; 
+    padding: 3px 12px; 
+    font-weight: 500;
+}
+
+.btn-lang.active { 
+    background-color: #6c757d; 
+    color: white !important; 
+    border-color: #6c757d; 
+}
+
+/* --- Portfolio Page Styles --- */
+.portfolio-hero {
+    position: relative;
+    padding: 160px 0 120px;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.95)), 
+                url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1600') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    text-align: center;
+}
+
+.portfolio-hero .hero-subtitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+    letter-spacing: 2px;
+}
+
+.portfolio-hero h1 {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 800;
+    color: var(--brand-red);
+    text-shadow: 0 2px 10px rgba(227, 30, 36, 0.1);
+    margin-top: 10px;
+}
+
+/* Portfolio Filter Tabs */
+.portfolio-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: -30px auto 40px;
+    position: relative;
+    z-index: 10;
+}
+
+.filter-btn {
+    background: #fff;
+    border: 1px solid #eee;
+    color: #555;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.filter-btn:hover {
+    border-color: var(--brand-orange);
+    color: var(--brand-orange);
+}
+
+.filter-btn.active {
+    background: var(--brand-gradient);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(227, 30, 36, 0.2);
+}
+
+/* Portfolio Cards */
+.portfolio-item {
+    transition: all 0.4s ease;
+}
+
+.portfolio-card {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    cursor: pointer;
+}
+
+.portfolio-img-box {
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+}
+
+.portfolio-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.portfolio-card:hover .portfolio-img-box img {
+    transform: scale(1.1);
+}
+
+/* Overlay เวลา Hover รูปภาพ */
+.portfolio-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(227, 30, 36, 0.85); /* สีแดงโปร่งแสง */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: 0.4s ease;
+}
+
+.portfolio-card:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+.portfolio-overlay i {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 10px;
+    transform: translateY(20px);
+    transition: 0.4s ease;
+}
+
+.portfolio-overlay span {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transform: translateY(20px);
+    transition: 0.4s ease 0.1s;
+    text-align: center;
+    padding: 0 15px;
+}
+
+.portfolio-card:hover .portfolio-overlay i,
+.portfolio-card:hover .portfolio-overlay span {
+    transform: translateY(0);
+}
+
+/* ISO Banner */
+/* --- ISO Standard Banner (แบบ Dark Card ลายน้ำ) --- */
+.iso-banner-section {
+    padding: 60px 0 80px;
+    background-color: var(--bg-body, #f8f9fa); /* สีพื้นหลังกลืนกับหน้าเว็บ */
+}
+
+.iso-card {
+    position: relative;
+    background-color: #212529; /* สีพื้นหลังกล่องแบบเข้ม */
+    border-radius: 12px;
+    padding: 60px 40px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ลายน้ำเลข 17025 ตัวใหญ่ด้านซ้าย */
+.iso-watermark {
+    position: absolute;
+    top: 50%;
+    left: -2%;
+    transform: translateY(-50%);
+    font-size: clamp(8rem, 15vw, 16rem); /* ย่อขยายขนาดตามจออัตโนมัติ */
+    font-weight: 900;
+    color: #ffffff;
+    opacity: 0.03; /* ทำให้จางสุดๆ */
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+}
+
+/* เนื้อหาด้านบนลายน้ำ */
+.iso-content {
+    position: relative;
+    z-index: 2;
+}
+
+.iso-content h3 {
+    color: #F5B041; /* สีส้มทองตามแบบในรูป */
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.iso-content p {
+    color: #ffffff;
+    font-weight: 300;
+    font-size: 1.1rem;
+    margin: 0 auto;
+    max-width: 800px;
+    line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+    .iso-card { padding: 40px 20px; }
+    .iso-content p { font-size: 0.95rem; }
+    .iso-watermark { left: -5%; }
+}
+
+.iso-banner-bottom h2 {
+    font-weight: 800;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+/* --- Responsive Adjustments (รองรับมือถือ) --- */
+@media (max-width: 991px) {
+    .portfolio-hero { padding: 120px 0 80px; }
+    .portfolio-img-box { height: 250px; }
+}
+
+@media (max-width: 767px) {
+    .portfolio-hero { padding: 100px 0 60px; }
+    .portfolio-hero h1 { font-size: 2.2rem; }
+    
+    /* ปรับปุ่ม Filter ให้ปัดซ้าย-ขวาได้บนมือถือ */
+    .portfolio-filters {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 15px;
+        margin: -20px 0 30px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* ซ่อน Scrollbar บน Firefox */
+    }
+    .portfolio-filters::-webkit-scrollbar {
+        display: none; /* ซ่อน Scrollbar บน Chrome/Safari */
+    }
+    .filter-btn {
+        white-space: nowrap; /* ป้องกันข้อความในปุ่มตกบรรทัด */
+        padding: 8px 20px;
+        font-size: 0.85rem;
+    }
+    
+    .portfolio-img-box { height: 220px; }
+    .iso-banner-bottom { padding: 50px 0; }
+    .iso-banner-bottom h2 { font-size: 1.5rem; }
+}
+
+/* การตกแต่งส่วน Hero Banner */
+.hero-banner {
+    padding: 100px 0; /* ปรับระยะบน-ล่างตามความเหมาะสม */
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-text-box {
+    max-width: 800px;
+}
+
+/* จัดการตัวอักษรในโหมดมือถือ */
+@media (max-width: 991px) {
+    .hero-text-box {
+        text-align: center; /* จัดตัวอักษรให้อยู่กึ่งกลาง */
+        margin-top: 20px;
+    }
+    .hero-text-box h1 {
+        font-size: 2.2rem; /* ขนาดหัวข้อบนมือถือ */
+    }
+    .hero-text-box p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* ตกแต่งปุ่มให้สมดุลและตัวหนังสืออยู่กึ่งกลางเป๊ะ */
+.hero-banner .btn {
+    min-width: 160px; /* บังคับความกว้างปุ่มให้เท่ากัน */
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    border-radius: 50px; /* ทำให้เป็นทรงมน */
+}
+
+/* ปรับแต่งปุ่มติดต่อเจ้าหน้าที่ให้ดูโปร่ง */
+.btn-outline-light {
+    border: 1.5px solid #fff;
+}
+
+/* จัดกลุ่มปุ่มในมือถือ */
+.hero-button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center; /* กลางในมือถือ */
+}
+
+@media (min-width: 992px) {
+    .hero-button-group {
+        justify-content: flex-start; /* ชิดซ้ายในคอม */
+    }
+}
+

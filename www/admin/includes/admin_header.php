@@ -1,0 +1,88 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// ตรวจสอบ Login
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+    header("Location: index.php");
+    exit();
+}
+?>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - ASK Calibration</title>
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="../assets/css/styleadmin.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+
+<div class="container-fluid p-0">
+    <div class="row g-0">
+        <div class="sidebar d-none d-lg-block">
+            <div class="sidebar-brand">
+                <h5 class="m-0"><i class="fas fa-shield-alt me-2"></i> ASK ADMIN</h5>
+            </div>
+
+            <?php $current_page = basename($_SERVER['PHP_SELF']); ?>
+            
+            <div class="menu-label">Main Management</div>
+            <a href="dashboard.php" class="<?php echo ($current_page == 'dashboard.php') ? 'active' : ''; ?>">
+                <i class="fas fa-file-invoice-dollar me-2"></i> รายการใบเสนอราคา
+            </a>
+            <a href="manage_contact.php" class="<?php echo ($current_page == 'manage_contact.php') ? 'active' : ''; ?>">
+                <i class="fas fa-envelope-open-text me-2"></i> ข้อความติดต่อ
+            </a>
+
+            <div class="menu-label">Website Content</div>
+            <a href="manage_services.php" class="<?php echo ($current_page == 'manage_services.php') ? 'active' : ''; ?>">
+                <i class="fas fa-microscope me-2"></i> จัดการระบบสอบเทียบ
+            </a>
+            
+            <a href="manage_portfolio.php" class="<?php echo ($current_page == 'manage_portfolio.php') ? 'active' : ''; ?>">
+                <i class="fas fa-images me-2"></i> จัดการผลงานบริษัท
+            </a>
+
+            <a href="manage_scope.php" class="<?php echo ($current_page == 'manage_scope.php') ? 'active' : ''; ?>">
+                <i class="fas fa-list-alt me-2"></i> จัดการขอบข่ายการให้บริการ
+            </a>
+
+            <a href="manage_news.php" class="<?php echo ($current_page == 'manage_news.php') ? 'active' : ''; ?>">
+                <i class="fas fa-newspaper me-2"></i> จัดการข่าวสาร
+            </a>
+            <a href="manage_jobs.php" class="<?php echo ($current_page == 'manage_jobs.php') ? 'active' : ''; ?>">
+                <i class="fas fa-user-tie me-2"></i> จัดการการรับสมัครงาน
+            </a>
+            <a href="manage_admin.php" class="<?php echo ($current_page == 'manage_admin.php') ? 'active' : ''; ?>">
+                <i class="fas fa-users-cog me-2"></i> จัดการผู้ดูแลระบบ
+            </a>
+            
+            <a href="logout.php" class="logout-btn">
+                <i class="fas fa-power-off me-2"></i> ออกจากระบบ
+            </a>
+        </div>
+
+        <div class="main-content">
+            <nav class="top-navbar d-flex justify-content-between align-items-center shadow-sm">
+                <span class="navbar-brand">Dashboard</span>
+                
+                <div class="admin-profile shadow-sm">
+                    <i class="fas fa-user-circle text-danger fs-4"></i>
+                    <div class="d-none d-md-block">
+                        <small class="text-muted d-block" style="font-size: 0.65rem; font-weight: 700; text-transform: uppercase;">Logged in as</small>
+                        <span class="fw-bold" style="font-size: 0.85rem;"><?php echo htmlspecialchars($_SESSION['admin_username'] ?? 'Admin'); ?></span>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="p-4 p-lg-5">

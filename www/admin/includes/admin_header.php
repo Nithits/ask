@@ -46,7 +46,7 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 
             <div class="menu-label">Website Content</div>
             <a href="manage_services.php" class="<?php echo ($current_page == 'manage_services.php') ? 'active' : ''; ?>">
-                <i class="fas fa-microscope me-2"></i> จัดการระบบสอบเทียบ
+                <i class="fas fa-microscope me-2"></i> จัดการบริการ 
             </a>
             
             <a href="manage_portfolio.php" class="<?php echo ($current_page == 'manage_portfolio.php') ? 'active' : ''; ?>">

@@ -70,7 +70,7 @@ include 'includes/admin_header.php';
 <div class="admin-container">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h2 class="fw-bold m-0"><i class="fas fa-microscope text-danger me-2"></i> จัดการระบบสอบเทียบ</h2>
+            <h2 class="fw-bold m-0"><i class="fas fa-microscope text-danger me-2"></i> จัดการ</h2>
             <p class="text-muted small mb-0">จัดการหมวดหมู่ Lab และรายการเครื่องมือวัด</p>
         </div>
         <div class="d-flex gap-2">
@@ -100,7 +100,7 @@ include 'includes/admin_header.php';
                             <tr>
                                 <th>ภาพ</th>
                                 <th>รายการเครื่องมือ</th>
-                                <th class="text-center">จัดการ</th>
+                                <th class="text-center">จัดการบริการ</th>
                             </tr>
                         </thead>
                         <tbody>

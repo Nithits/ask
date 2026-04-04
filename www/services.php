@@ -29,6 +29,13 @@ foreach ($all_services as $service) {
 }
 ?>
 
+<style>
+/* ทำให้พื้นหลัง Modal ดูดาร์กๆ คล้าย Lightbox */
+#imagePreviewModal {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+</style>
+
 <section class="service-banner">
     <div class="container animate__animated animate__fadeIn">
         
@@ -79,9 +86,16 @@ foreach ($all_services as $service) {
                 ?>
                         <div class="col-md-6 col-lg-4">
                             <div class="card h-100 instrument-card shadow-sm">
-                                <div class="instrument-img-container">
-                                    <img src="<?php echo $img_src; ?>" alt="<?php echo $title; ?>">
+                                
+                                <div class="instrument-img-container" style="height: 250px; display: flex; align-items: center; justify-content: center; padding: 15px; overflow: hidden; border-bottom: 2px solid #dc3545; background-color: #fff;">
+                                    <img src="<?php echo $img_src; ?>" alt="<?php echo $title; ?>" 
+                                         style="max-width: 100% !important; max-height: 100% !important; width: auto !important; height: auto !important; object-fit: contain !important; object-position: center !important; cursor: pointer; pointer-events: auto; transition: transform 0.2s;"
+                                         onmouseover="this.style.transform='scale(1.05)'" 
+                                         onmouseout="this.style.transform='scale(1)'"
+                                         onclick="viewFullImage(this.src)" 
+                                         title="คลิกเพื่อดูรูปขยาย">
                                 </div>
+                                
                                 <div class="card-title-box">
                                     <h5 class="fw-bold m-0" style="font-size: 1.1rem;"><?php echo htmlspecialchars($title); ?></h5>
                                 </div>
@@ -117,6 +131,18 @@ foreach ($all_services as $service) {
     </div>
 </div>
 
+<div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content bg-transparent border-0 shadow-none">
+            <div class="modal-header border-0 pb-0 justify-content-end">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" style="filter: invert(1) grayscale(100%) brightness(200%); opacity: 1;"></button>
+            </div>
+            <div class="modal-body text-center p-0">
+                <img src="" id="fullSizeImage" class="img-fluid rounded shadow-lg" style="max-height: 85vh; object-fit: contain;">
+            </div>
+        </div>
+    </div>
+</div>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     var tabs = document.querySelectorAll('#serviceTabs button');
@@ -126,6 +152,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+let imagePreviewModal = null;
+
+// เตรียม Modal รูปภาพให้พร้อมเมื่อโหลดเว็บเสร็จ
+document.addEventListener('DOMContentLoaded', function() {
+    imagePreviewModal = new bootstrap.Modal(document.getElementById('imagePreviewModal'));
+});
+
+// ฟังก์ชันเปิดป๊อปอัปรูปใหญ่
+function viewFullImage(src) {
+    try {
+        document.getElementById('fullSizeImage').src = src;
+        if(imagePreviewModal) {
+            imagePreviewModal.show();
+        } else {
+            imagePreviewModal = new bootstrap.Modal(document.getElementById('imagePreviewModal'));
+            imagePreviewModal.show();
+        }
+    } catch (err) {
+        console.error("เกิดข้อผิดพลาดในการโหลดรูป: ", err);
+    }
+}
 </script>
 
 <?php include 'includes/footer.php'; ?>

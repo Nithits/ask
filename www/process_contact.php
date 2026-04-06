@@ -35,6 +35,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $headers = "From: webmaster@askcalibration.com";
             @mail($to, $email_subject, $email_body, $headers);
 
+            // ==========================================
+            // 📍 โค้ดสร้างแจ้งเตือนแอดมิน (ทำงานทันทีที่บันทึกข้อมูลเสร็จ)
+            // ==========================================
+            $notif_title = "มีข้อความติดต่อใหม่!";
+            $notif_msg = "คุณ " . $name . " ได้ส่งข้อความสอบถามเข้ามาจากหน้าติดต่อเราครับ"; 
+            
+            $stmt_alert = $pdo->prepare("INSERT INTO admin_notifications (title, message) VALUES (?, ?)");
+            $stmt_alert->execute([$notif_title, $notif_msg]);
+            // ==========================================
+
             // เก็บค่าความสำเร็จลง Session
             $_SESSION['status'] = "success";
             $_SESSION['message'] = "ส่งข้อความเรียบร้อยแล้ว ขอบคุณที่ติดต่อเรา";
@@ -53,3 +63,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: index.php");
     exit;
 }
+?>

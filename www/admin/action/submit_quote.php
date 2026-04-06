@@ -54,6 +54,17 @@ if (move_uploaded_file($file['tmp_name'], $upload_path)) {
             ':file'  => $new_file_name
         ]);
 
+        // ==========================================
+        // 📍 โค้ดสร้างแจ้งเตือนแอดมิน (ทำงานทันทีที่บันทึกข้อมูลข้างบนเสร็จ)
+        // ==========================================
+        $notif_title = "ขอใบเสนอราคาใหม่!";
+        $notif_msg = "บริษัท " . $company_name . " ได้ส่งคำขอใบเสนอราคาและแนบไฟล์เครื่องมือเข้ามาในระบบครับ"; 
+        
+        $stmt_alert = $pdo->prepare("INSERT INTO admin_notifications (title, message) VALUES (?, ?)");
+        $stmt_alert->execute([$notif_title, $notif_msg]);
+        // ==========================================
+
+        // ส่งกลับไปโชว์ป็อปอัปสีเขียวที่หน้าเว็บลูกค้า
         header("Location: ../quote.php?status=success");
         exit();
 
@@ -65,3 +76,4 @@ if (move_uploaded_file($file['tmp_name'], $upload_path)) {
     header("Location: ../quote.php?status=upload_failed");
     exit();
 }
+?>

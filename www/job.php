@@ -1,3 +1,17 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// เช็คว่าลูกค้าล็อกอินหรือยัง?
+if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true) {
+    // ถ้ายังไม่ล็อกอิน ให้สร้างข้อความแจ้งเตือนไว้
+    $_SESSION['error_msg'] = "กรุณาเข้าสู่ระบบ หรือสมัครสมาชิกก่อนเข้าใช้งานหน้านี้ครับ";
+    // เตะกลับไปหน้า login
+    header("Location: login.php");
+    exit();
+}
+?>
 <?php 
 // 1. เริ่มต้นระบบ Config และ Logic
 include_once 'includes/language_setup.php'; 

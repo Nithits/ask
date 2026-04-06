@@ -43,8 +43,11 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
             <a href="manage_contact.php" class="<?php echo ($current_page == 'manage_contact.php') ? 'active' : ''; ?>">
                 <i class="fas fa-envelope-open-text me-2"></i> ข้อความติดต่อ
             </a>
-
+            <a href="manage_users.php" class="<?php echo ($current_page == 'manage_users.php') ? 'active' : ''; ?>">
+             <i class="fas fa-users me-2"></i> จัดการข้อมูลลูกค้า </a>
+             
             <div class="menu-label">Website Content</div>
+            
             <a href="manage_services.php" class="<?php echo ($current_page == 'manage_services.php') ? 'active' : ''; ?>">
                 <i class="fas fa-microscope me-2"></i> จัดการบริการ 
             </a>
@@ -66,7 +69,6 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
             <a href="manage_admin.php" class="<?php echo ($current_page == 'manage_admin.php') ? 'active' : ''; ?>">
                 <i class="fas fa-users-cog me-2"></i> จัดการผู้ดูแลระบบ
             </a>
-            
             <a href="logout.php" class="logout-btn">
                 <i class="fas fa-power-off me-2"></i> ออกจากระบบ
             </a>

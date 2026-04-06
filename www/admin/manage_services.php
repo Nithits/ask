@@ -43,15 +43,19 @@ if (isset($_GET['delete_id'])) {
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save_service'])) {
     $id = $_POST['service_id'] ?? null;
     $img_name = $_POST['old_image'] ?? null;
+    $price = isset($_POST['price']) ? floatval($_POST['price']) : 0.00; // รับค่าตัวเลขราคา
+
     if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $img_name = 'svc_' . time() . '_' . uniqid() . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
         move_uploaded_file($_FILES['image']['tmp_name'], "../assets/uploads/services/" . $img_name);
         if (!empty($_POST['old_image'])) { @unlink("../assets/uploads/services/" . $_POST['old_image']); }
     }
     if ($id) {
-        $pdo->prepare("UPDATE services SET category=?, title_th=?, title_en=?, image=? WHERE id=?")->execute([$_POST['category'], htmlspecialchars($_POST['title_th']), htmlspecialchars($_POST['title_en']), $img_name, $id]);
+        // เพิ่ม price ในการอัปเดต
+        $pdo->prepare("UPDATE services SET category=?, title_th=?, title_en=?, price=?, image=? WHERE id=?")->execute([$_POST['category'], htmlspecialchars($_POST['title_th']), htmlspecialchars($_POST['title_en']), $price, $img_name, $id]);
     } else {
-        $pdo->prepare("INSERT INTO services (category, title_th, title_en, image) VALUES (?, ?, ?, ?)")->execute([$_POST['category'], htmlspecialchars($_POST['title_th']), htmlspecialchars($_POST['title_en']), $img_name]);
+        // เพิ่ม price ในการเพิ่มใหม่
+        $pdo->prepare("INSERT INTO services (category, title_th, title_en, price, image) VALUES (?, ?, ?, ?, ?)")->execute([$_POST['category'], htmlspecialchars($_POST['title_th']), htmlspecialchars($_POST['title_en']), $price, $img_name]);
     }
     header("Location: manage_services.php?status=success"); exit();
 }
@@ -100,7 +104,7 @@ include 'includes/admin_header.php';
                             <tr>
                                 <th>ภาพ</th>
                                 <th>รายการเครื่องมือ</th>
-                                <th class="text-center">จัดการบริการ</th>
+                                <th class="text-end">ราคา (THB)</th> <th class="text-center">จัดการบริการ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -111,13 +115,16 @@ include 'includes/admin_header.php';
                                     <div class="fw-bold text-dark"><?php echo $row['title_th']; ?></div>
                                     <div class="small text-muted"><?php echo $row['title_en']; ?></div>
                                 </td>
+                                <td class="text-end text-danger fw-bold" style="width: 150px;">
+                                    <?php echo number_format($row['price'] ?? 0, 2); ?>
+                                </td>
                                 <td class="text-center" style="width: 150px;">
                                     <button class="btn-action-edit me-1" onclick='editService(<?php echo json_encode($row); ?>)'><i class="fas fa-edit"></i></button>
                                     <button class="btn-action-delete" onclick="confirmDeleteService(<?php echo $row['id']; ?>)"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                             <?php endforeach; else: ?>
-                            <tr><td colspan="3" class="text-center py-4 text-muted small">ยังไม่มีรายการข้อมูลใน Lab นี้</td></tr>
+                            <tr><td colspan="4" class="text-center py-4 text-muted small">ยังไม่มีรายการข้อมูลใน Lab นี้</td></tr>
                             <?php endif; ?>
                         </tbody>
                     </table>
@@ -155,6 +162,10 @@ include 'includes/admin_header.php';
                         <div class="col-md-6">
                             <label class="form-label fw-bold small text-muted">ชื่อเครื่องมือ (EN) *</label>
                             <input type="text" name="title_en" id="t_en" class="form-control rounded-4 p-3" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-bold small text-muted">ราคา / ราคากลาง (THB) *</label>
+                            <input type="number" step="0.01" name="price" id="svc_price" class="form-control rounded-4 p-3" placeholder="0.00" required>
                         </div>
                         <div class="col-12">
                             <label class="form-label fw-bold small text-muted">อัปโหลดรูปภาพ</label>
@@ -223,7 +234,9 @@ function editService(data) {
     document.getElementById('cat_select').value = data.category;
     document.getElementById('t_th').value = data.title_th;
     document.getElementById('t_en').value = data.title_en;
+    document.getElementById('svc_price').value = data.price || 0; // ดึงราคามาแสดงในช่อง
     document.getElementById('old_image').value = data.image || "";
+    
     if(data.image) {
         document.getElementById('img_preview_box').classList.remove('d-none');
         document.getElementById('img_view').src = "../assets/uploads/services/" + data.image;

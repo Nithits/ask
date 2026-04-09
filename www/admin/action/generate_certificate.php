@@ -1,83 +1,83 @@
 <?php
 // admin/action/generate_certificate.php
-require_once __DIR__ . '/../../vendor/autoload.php'; // เรียกใช้ mPDF
 require_once __DIR__ . '/../../config/db.php';
 session_start();
 
-// ตรวจสอบความปลอดภัย (ต้องเป็นแอดมินเท่านั้น)
-if (!isset($_SESSION['admin_logged_in'])) {
-    die("Unauthorized access");
-}
+if (!isset($_SESSION['admin_logged_in'])) { die("Unauthorized"); }
 
 $id = $_GET['id'] ?? null;
-
-if (!$id) {
-    die("ไม่พบรหัสอ้างอิง");
-}
+if (!$id) { die("Data Missing"); }
 
 try {
-    // 1. ดึงข้อมูลใบเสนอราคาและรายการเครื่องมือ (เฉพาะที่ Success)
-    // เชื่อมตารางตาม ER ของนาย: quotations -> quotation_items -> services
-    $sql = "SELECT q.*, qi.price, qi.qty, s.title_th, s.title_en 
+    $sql = "SELECT q.*, s.title_th, s.title_en 
             FROM quotations q
             JOIN quotation_items qi ON q.id = qi.quotation_id
             JOIN services s ON qi.service_id = s.id
             WHERE q.id = ? AND q.status = 'success' LIMIT 1";
-            
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$id]);
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$data) { die("งานยังไม่เสร็จหรือไม่มีข้อมูล"); }
+} catch (PDOException $e) { die($e->getMessage()); }
+?>
 
-    if (!$data) {
-        die("ไม่พบข้อมูล หรือสถานะงานยังไม่เสร็จสมบูรณ์");
-    }
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Certificate - <?= $id ?></title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Sarabun', sans-serif; background-color: #f5f5f5; display: flex; justify-content: center; padding: 20px; }
+        .cert-container { background: white; width: 297mm; height: 210mm; padding: 10mm; box-shadow: 0 0 20px rgba(0,0,0,0.1); position: relative; box-sizing: border-box; }
+        .border-outer { border: 15px solid #1a365d; height: 100%; padding: 10px; box-sizing: border-box; }
+        .border-inner { border: 2px solid #1a365d; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; box-sizing: border-box; }
+        h1 { color: #1a365d; font-size: 50px; margin: 0; text-transform: uppercase; }
+        h3 { color: #666; margin-top: 5px; margin-bottom: 50px; }
+        .info-section { width: 80%; text-align: left; font-size: 20px; line-height: 2; margin-bottom: 40px; }
+        .signature-section { width: 100%; display: flex; justify-content: space-around; margin-top: 50px; }
+        .sig-box { text-align: center; }
+        .no-print-btn { position: fixed; top: 20px; right: 20px; padding: 10px 20px; background: #1a365d; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        
+        /* สั่งซ่อนปุ่มเวลาจะพิมพ์จริงๆ */
+        @media print { 
+            .no-print-btn { display: none; } 
+            body { background: white; padding: 0; }
+            .cert-container { box-shadow: none; margin: 0; }
+        }
+    </style>
+</head>
+<body>
 
-    // 2. สร้างเนื้อหา HTML สำหรับใบรับรอง
-    $html = '
-    <div style="border: 15px solid #1a365d; padding: 40px; text-align: center; font-family: garuda;">
-        <div style="border: 2px solid #1a365d; padding: 20px;">
-            <h1 style="color: #1a365d; font-size: 35px; margin-bottom: 5px;">CERTIFICATE OF CALIBRATION</h1>
-            <h3 style="color: #666; margin-top: 0;">ASK Calibration & Service Co., Ltd.</h3>
+<button class="no-print-btn" onclick="window.print()">กดเพื่อบันทึกเป็น PDF / พิมพ์ใบเซอร์</button>
+
+<div class="cert-container">
+    <div class="border-outer">
+        <div class="border-inner">
+            <h1>Certificate of Calibration</h1>
+            <h3>ASK CALIBRATION & SERVICE CO., LTD.</h3>
             
-            <div style="margin: 40px 0; text-align: left; line-height: 1.8;">
-                <p><b>Certificate No:</b> CERT-' . date('Y') . '-' . str_pad($id, 4, '0', STR_PAD_LEFT) . '</p>
-                <p><b>Customer Name:</b> ' . htmlspecialchars($data['company_name']) . '</p>
-                <p><b>Instrument:</b> ' . htmlspecialchars($data['title_en'] ?: $data['title_th']) . '</p>
-                <p><b>Calibration Date:</b> ' . date('d F Y', strtotime($data['requested_at'])) . '</p>
-                <p><b>Result:</b> PASSED</p>
+            <div class="info-section">
+                <strong>Certificate No:</strong> CERT-<?= date('Y') ?>-<?= str_pad($id, 4, '0', STR_PAD_LEFT) ?><br>
+                <strong>Customer Name:</strong> <?= htmlspecialchars($data['company_name']) ?><br>
+                <strong>Instrument:</strong> <?= htmlspecialchars($data['title_en'] ?: $data['title_th']) ?><br>
+                <strong>Calibration Date:</strong> <?= date('d F Y', strtotime($data['requested_at'])) ?><br>
+                <strong>Result:</strong> <span style="color: green; font-weight: bold;">PASSED</span>
             </div>
 
-            <div style="margin-top: 60px;">
-                <p>This is to certify that the above instrument has been calibrated</p>
-                <p>according to the international standards and factory specifications.</p>
-            </div>
+            <p>This is to certify that the above instrument has been calibrated according to international standards.</p>
 
-            <div style="margin-top: 80px; width: 100%;">
-                <table style="width: 100%; border: none;">
-                    <tr>
-                        <td style="text-align: center; border: none;">
-                            <br>__________________________<br>
-                            ( Quality Manager )
-                        </td>
-                        <td style="text-align: center; border: none;">
-                            <br>__________________________<br>
-                            ( Authorized Signatory )
-                        </td>
-                    </tr>
-                </table>
+            <div class="signature-section">
+                <div class="sig-box">
+                    <br>__________________________<br>( Quality Manager )
+                </div>
+                <div class="sig-box">
+                    <br>__________________________<br>( Authorized Signatory )
+                </div>
             </div>
         </div>
-    </div>';
+    </div>
+</div>
 
-    // 3. ตั้งค่า mPDF และสั่งเจนไฟล์
-    $mpdf = new \Mpdf\Mpdf([
-        'default_font' => 'garuda',
-        'format' => 'A4-L' // แนวนอน (Landscape) จะดูเป็นใบเซอร์มากกว่า
-    ]);
-    
-    $mpdf->WriteHTML($html);
-    $mpdf->Output("Certificate_".$id.".pdf", "I");
-
-} catch (PDOException $e) {
-    die("Database Error: " . $e->getMessage());
-}
+</body>
+</html>

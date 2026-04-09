@@ -2,23 +2,12 @@
 session_start();
 require_once '../config/db.php';
 
-// ถ้าล็อกอินอยู่แล้ว ให้เด้งไปหน้า dashboard.php ทันที
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
     header("Location: dashboard.php");
     exit();
 }
 
 $error_msg = "";
-
-// --- ส่วนที่เพิ่ม: ดึงสถิติเบื้องต้นเตรียมไว้ (เผื่อใช้โชว์เล็กๆ หรือส่งค่าไปหน้าถัดไป) ---
-$count_pending = 0;
-try {
-    $stmt_count = $pdo->query("SELECT COUNT(*) FROM quotations WHERE status = 'pending'");
-    $count_pending = $stmt_count->fetchColumn();
-} catch (PDOException $e) {
-    // ดัก Error เงียบๆ
-}
-// -------------------------------------------------------------------------
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username']);
@@ -67,12 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <img src="../assets/images/favicon.png" alt="ASK Calibration Logo" class="brand-logo">
             <h4 class="fw-bold mt-2" style="color: #1e293b;">Admin Panel</h4>
             <p class="text-muted small">กรุณาลงชื่อเข้าสู่ระบบเพื่อจัดการข้อมูล</p>
-            
-            <?php if($count_pending > 0): ?>
-                <span class="badge rounded-pill bg-danger animate__animated animate__pulse animate__infinite" style="font-size: 0.7rem;">
-                    มีงานรอดำเนินการ <?php echo $count_pending; ?> รายการ
-                </span>
-            <?php endif; ?>
         </div>
 
         <?php if($error_msg): ?>

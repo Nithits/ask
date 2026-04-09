@@ -120,80 +120,73 @@ try {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($quotations as $row): 
-                        $current_items = $quote_items[$row['id']] ?? [];
-                        $grand_total = 0;
-                        foreach($current_items as $it) {
-                            $grand_total += ($it['price'] * $it['qty']);
-                        }
-                    ?>
-                        <tr>
-                            <td class="ps-4">
-                                <?php $thai_time = strtotime($row['requested_at']); ?>
-                                <div class="fw-semibold text-dark"><?= date('d M Y', $thai_time) ?></div>
-                                <div class="small text-muted"><i class="bi bi-clock me-1"></i> <?= date('H:i', $thai_time) ?></div>
-                            </td>
-                            <td>
-                                <div class="fw-bold text-dark text-truncate" style="max-width: 200px;"><?= htmlspecialchars($row['company_name']) ?></div>
-                                <div class="small text-muted"><?= htmlspecialchars($row['contact_person']) ?></div>
-                            </td>
-                            <td>
-                                <div class="small mb-1"><i class="bi bi-envelope-at me-2 text-primary"></i><?= htmlspecialchars($row['email']) ?></div>
-                                <div class="small"><i class="bi bi-telephone me-2 text-primary"></i><?= htmlspecialchars($row['phone']) ?></div>
-                            </td>
-                            <td class="text-end">
-                                <div class="fw-bold text-danger"><?= number_format($grand_total, 2) ?></div>
-                                <div class="small text-muted"><?= count($current_items) ?> รายการ</div>
-                            </td>
-                            <td class="text-center">
-                                <select class="form-select form-select-sm status-select mx-auto" 
-                                        data-id="<?= $row['id'] ?>" 
-                                        onchange="updateStatus(this)" 
-                                        style="width: 120px; border-radius: 20px; font-weight: bold; <?= 
-                                            ($row['status'] == 'success') ? 'background-color: #ecfdf5; border-color: #34d399; color: #065f46;' : 
-                                            (($row['status'] == 'processing') ? 'background-color: #fffbeb; border-color: #fbbf24; color: #92400e;' : 
-                                            'background-color: #f8fafc; color: #64748b; border-color: #e2e8f0;')
-                                        ?>">
-                                    <option value="pending" <?= $row['status'] == 'pending' ? 'selected' : '' ?>>Pending</option>
-                                    <option value="processing" <?= $row['status'] == 'processing' ? 'selected' : '' ?>>Processing</option>
-                                    <option value="success" <?= $row['status'] == 'success' ? 'selected' : '' ?>>Success</option>
-                                </select>
-                            </td>
-                            <td class="text-center pe-4">
-                                <div class="d-flex justify-content-center align-items-center gap-1">
-                                    
-                                    <button type="button" class="btn btn-sm btn-outline-primary" title="ดูรายละเอียด" onclick='showQuoteDetails(<?= json_encode($row)?>, <?= json_encode($current_items)?>)'>
-                                        <i class="bi bi-card-list"></i>
-                                    </button>
-
-                                    <?php if(!empty($row['equipment_list_file'])): ?>
-                                        <a href="../uploads/quotations/<?= $row['equipment_list_file'] ?>" target="_blank" class="btn btn-sm btn-primary" title="ดูไฟล์แนบ">
-                                            <i class="bi bi-paperclip"></i>
-                                        </a>
-                                    <?php else: ?>
-                                        <button type="button" class="btn btn-sm btn-light text-muted" disabled title="ไม่มีไฟล์แนบ">
-                                            <i class="bi bi-paperclip"></i>
-                                        </button>
-                                    <?php endif; ?>
-
-                                    <?php if($row['status'] == 'success'): ?>
-                                        <a href="action/generate_certificate.php?id=<?= $row['id'] ?>" target="_blank" class="btn btn-sm btn-success shadow-sm" title="ออกใบรับรอง">
-                                            <i class="bi bi-patch-check-fill"></i>
-                                        </a>
-                                    <?php endif; ?>
-
-                                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete(<?= $row['id'] ?>)" title="ลบ">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </button>
-
-                                </div>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr><td colspan="6" class="text-center py-5 text-muted">ไม่พบข้อมูลใบเสนอราคา</td></tr>
-                    <?php endif; ?>
-                </tbody>
+                                    <?php if (count($quotations) > 0): ?>
+                                        <?php foreach ($quotations as $row): 
+                                            $current_items = $quote_items[$row['id']] ?? [];
+                                            $grand_total = 0;
+                                            foreach($current_items as $it) {
+                                                $grand_total += ($it['price'] * $it['qty']);
+                                            }
+                                        ?>
+                                            <tr>
+                                                <td class="ps-4">
+                                                    <?php $thai_time = strtotime($row['requested_at']); ?>
+                                                    <div class="fw-semibold text-dark"><?= date('d M Y', $thai_time) ?></div>
+                                                    <div class="small text-muted"><i class="bi bi-clock me-1"></i> <?= date('H:i', $thai_time) ?></div>
+                                                </td>
+                                                <td>
+                                                    <div class="fw-bold text-dark text-truncate" style="max-width: 200px;"><?= htmlspecialchars($row['company_name']) ?></div>
+                                                    <div class="small text-muted"><?= htmlspecialchars($row['contact_person']) ?></div>
+                                                </td>
+                                                <td>
+                                                    <div class="small mb-1"><i class="bi bi-envelope-at me-2 text-primary"></i><?= htmlspecialchars($row['email']) ?></div>
+                                                    <div class="small"><i class="bi bi-telephone me-2 text-primary"></i><?= htmlspecialchars($row['phone']) ?></div>
+                                                </td>
+                                                <td class="text-end">
+                                                    <div class="fw-bold text-danger"><?= number_format($grand_total, 2) ?></div>
+                                                    <div class="small text-muted"><?= count($current_items) ?> รายการ</div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <select class="form-select form-select-sm status-select mx-auto" 
+                                                            data-id="<?= $row['id'] ?>" 
+                                                            onchange="updateStatus(this)" 
+                                                            style="width: 120px; border-radius: 20px; font-weight: bold; <?= 
+                                                                ($row['status'] == 'success') ? 'background-color: #ecfdf5; border-color: #34d399; color: #065f46;' : 
+                                                                (($row['status'] == 'processing') ? 'background-color: #fffbeb; border-color: #fbbf24; color: #92400e;' : 
+                                                                'background-color: #f8fafc; color: #64748b; border-color: #e2e8f0;')
+                                                            ?>">
+                                                        <option value="pending" <?= $row['status'] == 'pending' ? 'selected' : '' ?>>Pending</option>
+                                                        <option value="processing" <?= $row['status'] == 'processing' ? 'selected' : '' ?>>Processing</option>
+                                                        <option value="success" <?= $row['status'] == 'success' ? 'selected' : '' ?>>Success</option>
+                                                    </select>
+                                                </td>
+                                                <td class="text-center pe-4">
+                                                    <div class="d-flex justify-content-center align-items-center gap-1">
+                                                        <button type="button" class="btn btn-sm btn-outline-primary" title="รายละเอียด" onclick='showQuoteDetails(<?= json_encode($row)?>, <?= json_encode($current_items)?>)'>
+                                                            <i class="bi bi-card-list"></i>
+                                                        </button>
+                                                        <?php if(!empty($row['equipment_list_file'])): ?>
+                                                            <a href="../uploads/quotations/<?= $row['equipment_list_file'] ?>" target="_blank" class="btn btn-sm btn-primary" title="ดูไฟล์แนบ">
+                                                                <i class="bi bi-paperclip"></i>
+                                                            </a>
+                                                        <?php else: ?>
+                                                            <button type="button" class="btn btn-sm btn-light text-muted" disabled title="ไม่มีไฟล์แนบ">
+                                                                <i class="bi bi-paperclip"></i>
+                                                            </button>
+                                                        <?php endif; ?>
+                                                        <?php if($row['status'] == 'success'): ?>
+                                                            <a href="action/generate_certificate.php?id=<?= $row['id'] ?>" target="_blank" class="btn btn-sm btn-success shadow-sm" title="ออกใบรับรอง">
+                                                                <i class="bi bi-patch-check-fill"></i>
+                                                            </a>
+                                                        <?php endif; ?>
+                                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete(<?= $row['id'] ?>)" title="ลบ">
+                                                            <i class="fa-solid fa-trash-can"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?> <?php else: ?> <tr><td colspan="6" class="text-center py-5 text-muted">ไม่พบข้อมูลใบเสนอราคา</td></tr>
+                                    <?php endif; ?> </tbody>
             </table>
         </div>
     </div>
